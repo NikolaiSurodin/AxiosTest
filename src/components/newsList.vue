@@ -7,9 +7,9 @@
     </div>
     <div>
       <ul>
-        <li>
-          <router-link to="newsDetail" v-for="(n, id) in news"
-                       :key="id">
+        <li v-for="(n, id) in news"
+            :key="id" >
+          <router-link :to="`${n.id}`" >
             {{ n.slug }}
           </router-link>
         </li>
@@ -26,14 +26,15 @@ export default {
   name: 'newsList',
 
   data: () => ({
-    news: {},
-    errored: false,
-    props:['id']
+    news: [],
+    errored: false
   }),
-  async mounted() {
+  mounted() {
     axios
-        .get('https://sel-api.justplay.gg/api/v1/frontend/news?page=1')
-        .then(response => this.news = response.data.data)
+        .get('https://sel-api.justplay.gg/api/v1/frontend/news')
+        .then(response => {this.news = response.data.data
+        console.log()
+        })
         .catch(error => {
           console.log(error)
           this.errored = true
