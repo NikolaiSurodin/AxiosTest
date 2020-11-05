@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div v-if="errored" class="alert">
+    Мы не смогли загрузить новости, попробуйсте позже!
+  </div>
+  <div v-else>
     <h1>{{ this.newsDetail.title.en }} </h1>
     <button type="button" @click="goBack">Back</button>
     <p>Дата публикации новости: </p>
