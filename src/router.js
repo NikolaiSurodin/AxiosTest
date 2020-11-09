@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import news from "@/components/news";
 import newsDetail from "@/components/newsDetail";
+import login from "@/components/login";
+import users from "@/components/users";
 
 Vue.use(Router)
 export default new Router({
@@ -11,6 +13,16 @@ export default new Router({
         name: 'news',
         component: news
     },
+        {
+            path: '/login',
+            name: 'login',
+            component: login
+        },
+        {
+            path: '/users',
+            name: 'users',
+            component: users
+        },
         {
             path: '/:id',
             component: {
@@ -23,7 +35,8 @@ export default new Router({
                     path:'',
                     component:newsDetail
                 }
-            ]
+            ],
+
         }
 
 

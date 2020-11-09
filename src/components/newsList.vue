@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>News</h1>
-
     <div v-if="errored" class="alert">
       Мы не смогли загрузить новости, попробуйсте позже!
     </div>
@@ -14,6 +13,9 @@
           </router-link>
         </li>
       </ul>
+      <p>Чтобы посмотреть игроков нажмите здесь</p>
+      <button type="button" @click="GoUsers"> Users </button>
+
     </div>
 
 
@@ -39,6 +41,11 @@ export default {
           console.log(error)
           this.errored = true
         })
+  },
+  methods:{
+    GoUsers(){
+      this.$router.push('/login')
+    }
   }
 }
 </script>
