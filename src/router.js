@@ -21,19 +21,23 @@ export default new Router({
         {
             path: '/users',
             name: 'users',
-            component: users
+            component: users,
+            meta: {
+                requiresAuth: true
+            }
         },
+
         {
             path: '/:id',
             component: {
-                render(n){
+                render(n) {
                     return n('router-view')
                 }
             },
-            children:[
+            children: [
                 {
-                    path:'',
-                    component:newsDetail
+                    path: '',
+                    component: newsDetail
                 }
             ],
 
