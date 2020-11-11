@@ -1,14 +1,18 @@
 <template>
-  <news-list />
+  <news-list/>
+
 </template>
 
 
 <script>
 import newsList from "@/components/newsList";
 
+
 export default {
-  name:'news',
-  components: {newsList},
+  name: 'news',
+  components: {
+    newsList
+  },
   component: {
     newsList
   }

@@ -3,13 +3,15 @@
     <div class="card-action">
 
       <button type="button" @click.prevent="GoNews">переход к новостям</button>
-      <ul>
-        <h1>Users</h1>
-        <hr>
+      <h1>Users</h1>
+      <hr>
         <loader v-if="loading"></loader>
-        <li v-else v-for="(item,index) in users"
-            :key="index">
+        <ul v-else>
+        <li v-for="(item,id) in users"
+            :key="id">
+          <router-link :to="`${item.id}`">
           {{ item.username }}
+          </router-link>
         </li>
       </ul>
       <button type="button" @click="Logout">Выйти из системы</button>
@@ -30,44 +32,42 @@ export default {
       password: '',
       token: '',
       error: false,
-      loading:true
+      loading: true
     }
   },
-  components:{
+  components: {
     loader
   },
-computed:{
-isLoggedIn:function (){
-  return this.$store.getters.isLoggedIn
-}
-},
+  computed: {
+    isLoggedIn: function () {
+      return this.$store.getters.isLoggedIn
+    }
+  },
   mounted() {
 
-      axios
-          .get('https://sel-api.justplay.gg/api/v1/admin/users', {
-
-          })
-          .then(response => {
-            this.users = response.data.data
-            this.loading = false
-          })
-          .catch(e => {
-            console.log(e)
-            this.error = true
-          })
+    axios
+        .get('https://sel-api.justplay.gg/api/v1/admin/users', {})
+        .then(response => {
+          this.users = response.data.data
+          this.loading = false
+        })
+        .catch(e => {
+          console.log(e)
+          this.error = true
+        })
 
   },
   methods: {
     GoNews() {
 
-        this.$router.push('/')
+      this.$router.push('/')
 
     },
-    Logout(){
+    Logout() {
       this.$store.dispatch('Logout')
-      .then(() => {
-        this.$router.push('/login')
-      } )
+          .then(() => {
+            this.$router.push('/login')
+          })
     }
 
   }

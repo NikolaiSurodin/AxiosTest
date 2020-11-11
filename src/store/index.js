@@ -20,12 +20,15 @@ export const store = new Vuex.Store({
             localStorage.setItem('token', token)
         },
         Logout(state){
-            state.status = ''
-            state.token = ''
+            state.status = null
+            state.token = null
         },
         auth_request(state){
             state.status = 'loading'
         },
+        auth_error(state){
+            state.status = 'error'
+        }
 
 
 

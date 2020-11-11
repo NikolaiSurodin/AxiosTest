@@ -1,9 +1,11 @@
 <template>
   <form class="card auth-card">
-
-    <div class="card-content">
+    <p v v-if="error" class="title">Введите правильные данные</p>
+    <div v-else class="card-content">
       <h1>Login</h1>
-      <p>Ввести данные для входа или <router-link to="/">Вернуться к новостям</router-link> </p>
+      <p>Ввести данные для входа или
+        <router-link to="/">Вернуться к новостям</router-link>
+      </p>
       <div class="input-field">
         <input
             id="email"
@@ -22,7 +24,7 @@
         <label for="password">Пароль</label>
       </div>
       <div>
-        <p> </p>
+        <p></p>
         <button
             type="submit" @click.prevent="SubmitLogin"
         >Войти
@@ -40,7 +42,8 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: false
     }
   },
   methods: {
@@ -51,7 +54,11 @@ export default {
         password: this.password
       }
       this.$store.dispatch('SubmitLogin', data)
-      .then(() => this.$router.push('/users'))
+          .then(() => this.$router.push('/users'))
+          .catch((error) => {
+            console.log(error)
+            this.error = true
+          })
     }
   }
 }
