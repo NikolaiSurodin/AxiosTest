@@ -2,8 +2,8 @@
   <form class="card auth-card">
 
     <div class="card-content">
-      <h1>Rigistration</h1>
-      <p></p>
+      <h1>Login</h1>
+      <p>Ввести данные для входа или <router-link to="/">Вернуться к новостям</router-link> </p>
       <div class="input-field">
         <input
             id="email"
