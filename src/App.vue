@@ -11,13 +11,13 @@ import {store} from "@/store";
 
 export default {
   name: 'App',
-  mounted() {
+  // на mounted поздно, т.к. роутер вью уже был тоже смонтирован, что приводило к ошибке, хотя токен был установлен аксиосу, но уже после попытки запроса польззоователей.
+  // либо created либо beforeMount
+  beforeMount() {
     store.dispatch('checkAuth')
     .then(() =>{
 
     })
-
-
   }
 }
 </script>
