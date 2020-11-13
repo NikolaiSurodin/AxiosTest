@@ -9,7 +9,7 @@
         <ul v-else>
         <li v-for="(item,id) in users"
             :key="id">
-          <router-link :to="`${item.id}`">
+          <router-link :to="`users/${item.id}`">
           {{ item.username }}
           </router-link>
         </li>

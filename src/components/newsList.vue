@@ -16,7 +16,7 @@
           </router-link>
         </li>
       </ul>
-      <p>Чтобы посмотреть игроков нажмите </p>
+      <p>Чтобы посмотреть игроков нажмите: </p>
       <button type="button" @click="GoUsers"> Users</button>
     </div>
 

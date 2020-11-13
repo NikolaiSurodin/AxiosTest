@@ -46,6 +46,11 @@ export default {
       error: false
     }
   },
+  created() {
+    if (this.$store.getters.isLoggedIn){
+      this.$router.push('/users')
+    }
+  },
   methods: {
     //метод на кнопку идет запрос на токен
     SubmitLogin() {
@@ -59,7 +64,8 @@ export default {
             console.log(error)
             this.error = true
           })
-    }
+    },
+
   }
 }
 

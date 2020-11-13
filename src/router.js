@@ -44,7 +44,7 @@ export default new Router({
 
         },
         {
-            path: '/user/:id',
+            path: '/users/:id',
             component: {
                 render(c) {
                     return c('router-view')

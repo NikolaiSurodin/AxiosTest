@@ -7,8 +7,18 @@
 <script>
 
 
+import {store} from "@/store";
+
 export default {
-  name: 'App'
+  name: 'App',
+  mounted() {
+    store.dispatch('checkAuth')
+    .then(() =>{
+
+    })
+
+
+  }
 }
 </script>
 <style lang="scss">

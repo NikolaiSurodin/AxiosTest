@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios'
+import axios from 'axios';
 
 
 Vue.use(Vuex);
@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
     state: {
         token: localStorage.getItem('token'),
         user: [],
-        status:''
+        status: ''
     },
     mutations: {
 
@@ -17,20 +17,17 @@ export const store = new Vuex.Store({
             state.status = 'success'
             state.token = token
             state.user = user
-            localStorage.setItem('token', token)
         },
-        Logout(state){
+        Logout(state) {
             state.status = null
             state.token = null
         },
-        auth_request(state){
+        auth_request(state) {
             state.status = 'loading'
         },
-        auth_error(state){
+        auth_error(state) {
             state.status = 'error'
         }
-
-
 
     },
     actions: {
@@ -51,16 +48,28 @@ export const store = new Vuex.Store({
                     })
             })
         },
-        Logout({commit}){
-            return new Promise((resolve, reject) =>{
+        Logout({commit}) {
+            return new Promise((resolve, reject) => {
                 commit('Logout')
                 localStorage.removeItem('token')
                 delete axios.defaults.headers.common['Authorization']
                 resolve()
                 reject()
             })
+        },
+        setAuthHeader() {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${store.state.token}`
+        },
+
+        checkAuth() {
+            if (this.state.isLoggedIn) {
+                return this.dispatch('setAuthHeader')
+            }
+            return this.dispatch('Logout')
         }
+
     },
+
     getters: {
         isLoggedIn: state => !!state.token,
         authStatus: state => state.status
