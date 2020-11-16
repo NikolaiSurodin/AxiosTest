@@ -19,7 +19,11 @@
       <p>Чтобы посмотреть игроков нажмите: </p>
       <button type="button" @click="GoUsers"> Users</button>
     </div>
-
+    <sliding-pagination
+      :current="currentPage"
+      :total="totalPages"
+      @page-change="GetNewsList"
+    ></sliding-pagination>
   </div>
 
 </template>
@@ -33,16 +37,28 @@ export default {
   data: () => ({
     news: [],
     loading: true,
-    errored: false
+    errored: false,
+    currentPage: 1, 
+    totalPages: 1
   }),
   components: {
     loader
   },
   mounted() {
-    axios
-        .get('https://sel-api.justplay.gg/api/v1/frontend/news')
+    this.GetNewsList(this.currentPage)
+  },
+  methods: {
+    GoUsers() {
+      this.$router.push('/login')
+    },
+    GetNewsList(pg)  {
+        this.currentPage = pg
+        axios
+        .get('https://sel-api.justplay.gg/api/v1/frontend/news', {page: this.currentPage})
         .then(response => {
           this.news = response.data.data
+          this.currentPage = response.data.meta.page
+          this.totalPages = response.data.meta.last_page
           console.log()
           this.loading = false
         })
@@ -50,10 +66,6 @@ export default {
           console.log(error)
           this.errored = true
         })
-  },
-  methods: {
-    GoUsers() {
-      this.$router.push('/login')
     }
   }
 }
