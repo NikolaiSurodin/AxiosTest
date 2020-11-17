@@ -30,6 +30,7 @@
 <script>
 import axios from 'axios'
 import loader from "@/components/loader"
+import SlidingPagination from 'vue-sliding-pagination'
 
 export default {
   name: 'newsList',
@@ -42,7 +43,7 @@ export default {
     totalPages: 1
   }),
   components: {
-    loader
+    loader, SlidingPagination
   },
   mounted() {
     this.GetNewsList(this.currentPage)
