@@ -20,9 +20,9 @@
       <button type="button" @click="GoUsers"> Users</button>
     </div>
     <sliding-pagination
-      :current="currentPage"
-      :total="totalPages"
-      @page-change="GetNewsList"
+        :current="currentPage"
+        :total="totalPages"
+        @page-change="GetNewsList"
     ></sliding-pagination>
   </div>
 
@@ -39,8 +39,8 @@ export default {
     news: [],
     loading: true,
     errored: false,
-    currentPage: 1, 
-    totalPages: 1
+    currentPage:0,
+    totalPages:0
   }),
   components: {
     loader, SlidingPagination
@@ -52,21 +52,21 @@ export default {
     GoUsers() {
       this.$router.push('/login')
     },
-    GetNewsList(pg)  {
-        this.currentPage = pg
-        axios
-        .get('https://sel-api.justplay.gg/api/v1/frontend/news', {page: this.currentPage})
-        .then(response => {
-          this.news = response.data.data
-          this.currentPage = response.data.meta.page
-          this.totalPages = response.data.meta.last_page
-          console.log()
-          this.loading = false
-        })
-        .catch(error => {
-          console.log(error)
-          this.errored = true
-        })
+    GetNewsList(page) {
+      this.currentPage = page
+      axios
+          .get('https://sel-api.justplay.gg/api/v1/frontend/news', {page: this.currentPage})
+          .then(response => {
+            this.news = response.data.data
+            this.currentPage = response.data.meta.current_page
+            this.totalPages = response.data.meta.last_page
+            console.log()
+            this.loading = false
+          })
+          .catch(error => {
+            console.log(error)
+            this.errored = true
+          })
     }
   }
 }
