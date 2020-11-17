@@ -3,7 +3,7 @@
     <p v v-if="error" class="title">Введите правильные данные</p>
     <div v-else class="card-content">
       <h1>Login</h1>
-      <p>Ввести данные для входа или
+      <p>Введите данные для входа или
         <router-link to="/">Вернуться к новостям</router-link>
       </p>
       <div class="input-field">
