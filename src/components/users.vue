@@ -2,14 +2,15 @@
   <form class="card auth-card">
     <div class="card-action">
 
-      <button type="button" @click.prevent="GoNews">переход к новостям</button>
-      <h1>Users</h1>
+      <button type="button" @click.prevent="GoNews">К новостям</button>
+      <h1 align="center">Users</h1>
       <hr>
+      <p>Страница: {{ currentPage }}</p>
       <loader v-if="loading"></loader>
       <ul v-else>
-        <li v-for="(item,id) in users"
+        <li v-for="(item,id) in items"
             :key="id">
-          <router-link :to="`users/${item.id}`">
+          <router-link :to="`users/${item.id}#page=${currentPage}`">
             {{ item.username }}
           </router-link>
         </li>
@@ -19,30 +20,26 @@
           v-model="page"
           :current="currentPage"
           :total="totalPages"
-          @page-change="GetUserList"
+          @page-change="GetItemsList"
       ></sliding-pagination>
     </div>
 
   </form>
 </template>
 <script>
-import axios from 'axios'
 import loader from "@/components/loader"
 import SlidingPagination from 'vue-sliding-pagination'
+import paginationMixin from "@/components/mixins/paginationMixin";
 
 export default {
   name: 'users',
+  mixins:[paginationMixin],
   data() {
     return {
-      users: [],
       email: '',
       password: '',
       token: '',
-      error: false,
-      loading: true,
-      currentPage: 1,
-      page: 1,
-      totalPages: 22
+      urlPart:'admin/users'
     }
   },
   components: {
@@ -53,35 +50,16 @@ export default {
       return this.$store.getters.isLoggedIn
     }
   },
-  mounted() {
-    this.GetUserList(this.currentPage)
-  },
   methods: {
     GoNews() {
       this.$router.push('/')
+
     },
     Logout() {
       this.$store.dispatch('Logout')
           .then(() => {
             this.$router.push('/login')
           })
-    },
-    GetUserList(page){
-      this.$router.push(`${this.$route.path}#page=${page}`)
-      this.currentPage = page
-      axios
-          .get('https://sel-api.justplay.gg/api/v1/admin/users', {params: {page: this.currentPage}})
-          .then(response => {
-            this.users = response.data.data
-            this.currentPage = response.data.meta.current_page
-            this.totalPages = response.data.meta.last_page
-            this.loading = false
-          })
-          .catch(e => {
-            console.log(e)
-            this.error = true
-          })
-
     }
 
   }

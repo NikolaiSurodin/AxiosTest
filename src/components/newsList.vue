@@ -1,16 +1,16 @@
 <template>
   <div>
 
-    <h1>News</h1>
+    <h1 align="center">News</h1>
     <hr>
     <p align="center">Страница № {{ currentPage }}</p>
-    <div v-if="errored" class="alert">
+    <div v-if="error" class="alert">
       Мы не смогли загрузить новости, попробуйсте позже!
     </div>
     <div>
       <ul>
         <loader v-if="loading"/>
-        <li v-else v-for="(n, id) in news"
+        <li v-else v-for="(n, id) in items"
             :key="id">
           <router-link :to="`news/${n.id}`">
             {{ n.slug }}
@@ -24,54 +24,36 @@
         v-model="page"
         :current="currentPage"
         :total="totalPages"
-        @page-change="GetNewsList"
+        @page-change="GetItemsList"
     ></sliding-pagination>
   </div>
 
 </template>
 <script>
-import axios from 'axios'
-import loader from "@/components/loader"
+
 import SlidingPagination from 'vue-sliding-pagination'
+import paginationMixin from "@/components/mixins/paginationMixin";
 
 export default {
   name: 'newsList',
-
-  data: () => ({
-    news: [],
-    loading: true,
-    errored: false,
-    currentPage:1,
-    page:1,
-    totalPages: 22
-  }),
-  components: {
-    loader, SlidingPagination
+  mixins: [paginationMixin],
+  data() {
+    return {
+      urlPart: 'frontend/news'
+    }
   },
-  mounted() {
-    this.GetNewsList(this.currentPage)
-
+  components: {
+    SlidingPagination
   },
   methods: {
     GoUsers() {
       this.$router.push('/login')
-    },
-    GetNewsList(page) {
-      this.$router.push(`${this.$route.path}#page=${page}`)
-      this.currentPage = page
-      axios
-          .get('https://sel-api.justplay.gg/api/v1/frontend/news', {params: {page: this.currentPage}})
-          .then(response => {
-            this.news = response.data.data
-            this.currentPage = response.data.meta.current_page
-            this.totalPages = response.data.meta.last_page
-            this.loading = false
-          })
-          .catch(error => {
-            console.log(error)
-            this.errored = true
-          })
     }
   }
 }
 </script>
+<style>
+ul {
+  margin-left: 30px;
+}
+</style>
