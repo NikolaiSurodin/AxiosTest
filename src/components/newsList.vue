@@ -3,6 +3,7 @@
 
     <h1>News</h1>
     <hr>
+    <p align="center">Страница № {{ currentPage }}</p>
     <div v-if="errored" class="alert">
       Мы не смогли загрузить новости, попробуйсте позже!
     </div>
@@ -20,6 +21,7 @@
       <button type="button" @click="GoUsers"> Users</button>
     </div>
     <sliding-pagination
+        v-model="page"
         :current="currentPage"
         :total="totalPages"
         @page-change="GetNewsList"
@@ -39,28 +41,30 @@ export default {
     news: [],
     loading: true,
     errored: false,
-    currentPage:0,
-    totalPages:0
+    currentPage:1,
+    page:1,
+    totalPages: 22
   }),
   components: {
     loader, SlidingPagination
   },
   mounted() {
     this.GetNewsList(this.currentPage)
+
   },
   methods: {
     GoUsers() {
       this.$router.push('/login')
     },
     GetNewsList(page) {
+      this.$router.push(`${this.$route.path}#page=${page}`)
       this.currentPage = page
       axios
-          .get('https://sel-api.justplay.gg/api/v1/frontend/news', {page: this.currentPage})
+          .get('https://sel-api.justplay.gg/api/v1/frontend/news', {params: {page: this.currentPage}})
           .then(response => {
             this.news = response.data.data
             this.currentPage = response.data.meta.current_page
             this.totalPages = response.data.meta.last_page
-            console.log()
             this.loading = false
           })
           .catch(error => {
