@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <h1 align="center">News</h1>
     <hr>
     <p align="center">Страница № {{ currentPage }}</p>
@@ -17,8 +16,6 @@
           </router-link>
         </li>
       </ul>
-      <p>Чтобы посмотреть игроков нажмите: </p>
-      <button type="button" @click="GoUsers"> Users</button>
     </div>
     <sliding-pagination
         v-model="page"
@@ -56,4 +53,13 @@ export default {
 ul {
   margin-left: 30px;
 }
+
+.user {
+  margin-left: 20px;
+}
+
+.btn {
+  margin-left: 20px;
+}
+
 </style>

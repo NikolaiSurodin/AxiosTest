@@ -1,8 +1,7 @@
 <template>
   <form class="card auth-card">
+   <header-container />
     <div class="card-action">
-
-      <button type="button" @click.prevent="GoNews">К новостям</button>
       <h1 align="center">Users</h1>
       <hr>
       <p>Страница: {{ currentPage }}</p>
@@ -15,13 +14,15 @@
           </router-link>
         </li>
       </ul>
-      <button type="button" @click="Logout">Выйти из системы</button>
       <sliding-pagination
           v-model="page"
           :current="currentPage"
           :total="totalPages"
           @page-change="GetItemsList"
       ></sliding-pagination>
+      <div>
+        <footer-container/>
+      </div>
     </div>
 
   </form>
@@ -30,19 +31,20 @@
 import loader from "@/components/loader"
 import SlidingPagination from 'vue-sliding-pagination'
 import paginationMixin from "@/components/mixins/paginationMixin";
+import FooterContainer from "@/components/App/footerContainer";
+import HeaderContainer from "@/components/App/headerContainer";
 
 export default {
   name: 'users',
-  mixins:[paginationMixin],
+  mixins: [paginationMixin],
   data() {
     return {
-      email: '',
-      password: '',
-      token: '',
-      urlPart:'admin/users'
+      urlPart: 'admin/users'
     }
   },
   components: {
+    HeaderContainer,
+    FooterContainer,
     loader, SlidingPagination
   },
   computed: {
@@ -52,17 +54,26 @@ export default {
   },
   methods: {
     GoNews() {
-      this.$router.push('/')
+      this.$router.push('/news')
 
     },
-    Logout() {
-      this.$store.dispatch('Logout')
-          .then(() => {
-            this.$router.push('/login')
-          })
+    Logout(){
+      this.$root.$emit('logout')
     }
 
   }
 }
 
 </script>
+<style scoped>
+.header {
+  border-width: 0.19px;
+  border-color: #b5b7ba;
+  border-style: solid;
+  background-color: #dfdfdf;
+  height: 60px;
+  padding-top: 20px;
+
+}
+
+</style>

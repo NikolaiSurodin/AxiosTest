@@ -1,21 +1,27 @@
 <template>
-  <news-list/>
+
+  <div>
+    <header-container/>
+    <router-view/>
+    <div class="footer-copyright">
+      <footer-container/>
+    </div>
+
+  </div>
 
 </template>
 
 
 <script>
-import newsList from "@/components/newsList";
 
+import footerContainer from "@/components/App/footerContainer";
+import HeaderContainer from "@/components/App/headerContainer";
 
 export default {
   name: 'news',
   components: {
-    newsList
-  },
-  component: {
-    newsList
+    HeaderContainer,
+    footerContainer
   }
-
 }
 </script>

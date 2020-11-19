@@ -18,6 +18,14 @@ export default {
     .then(() =>{
 
     })
+  },
+  mounted() {
+    this.$root.$on('logout', ()=> {
+      this.$store.dispatch('Logout')
+          .then(() => {
+            this.$router.push('/login')
+          })
+    })
   }
 }
 </script>

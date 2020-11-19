@@ -1,10 +1,12 @@
 <template>
-  <div v-if="errored" class="alert">
+
+  <div v-if="error" class="alert">
     Мы не смогли загрузить новости, попробуйсте позже!
   </div>
   <div v-else>
+    <header-container />
     <h1>{{ this.newsDetail.title.en }} </h1>
-    <button type="button" @click="goBack">Back</button>
+    <button  class="btn" type="button" @click="goBack">Back</button>
     <p>Дата публикации новости: </p>
     {{ this.newsDetail.publish_date }}
     <p>Сегодня мы расскажем вам что:
@@ -13,12 +15,14 @@
 </template>
 <script>
 import axios from 'axios'
+import HeaderContainer from "@/components/App/headerContainer";
 
 export default {
   name: 'newsDetail',
+  components: {HeaderContainer},
   data: () => ({
     newsDetail: [],
-    errored: false
+    error: false
   }),
   mounted() {
     axios

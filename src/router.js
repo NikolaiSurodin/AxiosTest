@@ -1,19 +1,36 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import news from "@/components/news";
 import newsDetail from "@/components/newsDetail";
 import login from "@/components/login";
 import users from "@/components/users";
 import userDetail from "@/components/userDetail";
+import newsList from "@/components/newsList";
+import news from "@/components/news";
+
 
 Vue.use(Router)
 export default new Router({
     mode: 'history',
     routes: [{
-        path: '/',
-        name: 'news',
-        component: news
+        path: '/news',
+        component: news,
+        children: [
+            {
+                name: 'news',
+                path: '',
+                component: newsList,
+                meta:{
+                    requiresAuth: true
+                }
+            }
+        ],
     },
+        {
+
+            path: '/',
+            component: login
+
+        },
         {
             path: '/login',
             name: 'login',

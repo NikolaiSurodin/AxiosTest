@@ -41,7 +41,6 @@ let paginationMixin = {
     mounted() {
         if (this.$route.hash.indexOf('#page=') > -1) {
             this.currentPage = parseInt(this.$route.hash.replace('#page=', ''))
-            console.log(this.currentPage, this.$route)
         } else {
             this.currentPage = 1
         }
