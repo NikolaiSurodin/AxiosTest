@@ -49,17 +49,10 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 ul {
   margin-left: 30px;
 }
 
-.user {
-  margin-left: 20px;
-}
-
-.btn {
-  margin-left: 20px;
-}
 
 </style>

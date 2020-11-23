@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-copyright">
+  <div class="footer">
     <div class="container">
       © 2020
       <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
@@ -12,17 +12,19 @@ export default {
 }
 </script>
 <style>
-.footer-copyright{
+.footer{
   background-color: #434445;
   height: 60px;
   text-align: center;
   font-size: 20px;
+  margin: 0;
 
   padding-bottom:5px;
   color: #a4a4a4;
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
+  flex-basis: available;
 }
 </style>

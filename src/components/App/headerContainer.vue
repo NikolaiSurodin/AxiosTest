@@ -2,14 +2,16 @@
   <div class="header">
     <div class="container">
       <div v-if="isLoggedIn">
-        <button class="btn text-lighten-1 right" type="button" @click="Logout">Выйти из системы</button>
+        <button class="btn text-lighten-10 right" type="button" @click="Logout">Выйти</button>
       </div>
-      <div v-if="!isUser">
+      <div v-if="!isUser()">
         <router-link class="left" to="/users">К users</router-link>
       </div>
-      <div v-if="!isNews">
+      <div v-if="!isNews()">
         <router-link class="left" to="/news">Посмотреть новости</router-link>
       </div>
+
+
     </div>
   </div>
 </template>
@@ -30,13 +32,11 @@ export default {
     isNews() {
       return this.$route.path.indexOf('/news') > -1
     },
-    isUser(){
+    isUser() {
       return this.$route.path.indexOf('/users') > -1
     }
   },
   mounted() {
-    console.log(this.isUser())
-    console.log(this.isNews())
   }
 }
 </script>

@@ -5,8 +5,6 @@
 </template>
 
 <script>
-
-
 import {store} from "@/store";
 
 export default {
@@ -31,5 +29,6 @@ export default {
 </script>
 <style lang="scss">
 @import '~materialize-css/dist/css/materialize.min.css';
+@import "~vue-wysiwyg/dist/vueWysiwyg.css";
 </style>
 

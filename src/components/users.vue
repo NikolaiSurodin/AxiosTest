@@ -1,6 +1,6 @@
 <template>
-  <form class="card auth-card">
-   <header-container />
+  <div>
+    <header-container/>
     <div class="card-action">
       <h1 align="center">Users</h1>
       <hr>
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-  </form>
+  </div>
 </template>
 <script>
 import loader from "@/components/loader"
@@ -53,11 +53,7 @@ export default {
     }
   },
   methods: {
-    GoNews() {
-      this.$router.push('/news')
-
-    },
-    Logout(){
+    Logout() {
       this.$root.$emit('logout')
     }
 
@@ -66,14 +62,12 @@ export default {
 
 </script>
 <style scoped>
-.header {
-  border-width: 0.19px;
-  border-color: #b5b7ba;
-  border-style: solid;
-  background-color: #dfdfdf;
-  height: 60px;
-  padding-top: 20px;
+p {
+  margin-left: 30px;
+}
 
+ul {
+  margin-left: 20px;
 }
 
 </style>

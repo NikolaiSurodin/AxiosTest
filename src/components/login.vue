@@ -1,6 +1,5 @@
 <template>
-  <form class="card auth-card">
-    <header-container/>
+  <form>
     <p v v-if="error" class="helper-text">Введите правильные данные</p>
     <div v-else class="card-content">
       <h1>Login</h1>
@@ -37,10 +36,8 @@
 
 <script>
 
-import HeaderContainer from "@/components/App/headerContainer";
 export default {
   name: 'login',
-  components: {HeaderContainer},
   data() {
     return {
       email: '',
