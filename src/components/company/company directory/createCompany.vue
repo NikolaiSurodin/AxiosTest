@@ -1,0 +1,59 @@
+<template>
+  <form @submit.prevent="CreateCompany">
+    <h3>Create you company</h3>
+    <div class="row" >
+      <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <input class="card-title" placeholder="Название компании" v-model="model.name">
+            <input type="text" class="card-title" placeholder="Адрес" v-model="model.address">
+            <input type="text" class="card-title" placeholder="Составить описание компании" v-model="model.about">
+          </div>
+          <div class="card-action">
+            <button type="submit" class="btn" @submit.prevent="CreateCompany">Save</button>
+            <router-link to="/company" class="right">Go out</router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</template>
+
+<script>
+import {required, minValue} from 'vuelidate/lib/validators'
+
+export default {
+  name: "createCompany",
+  props: ['companyList'],
+
+  data() {
+    return {
+      model: {
+        name: '',
+        address: '',
+        about: '',
+        id: ''
+      }
+    }
+  },
+  validations: {
+    name: {required},
+    address: {minValue}
+  },
+
+  methods: {
+    CreateCompany() {
+      this.$store.dispatch('createCompany', this.model)
+      this.model.id = `f${(+new Date).toString(16)}` // генераци id как пример на дате, но как вот ее применить?
+      console.log(this.model.id)
+      console.log(this.model)
+      this.$router.push('/company')
+
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

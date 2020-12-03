@@ -53,6 +53,4 @@ export default {
 ul {
   margin-left: 30px;
 }
-
-
 </style>

@@ -21,7 +21,6 @@ export default {
 
   padding-bottom:5px;
   color: #a4a4a4;
-  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;

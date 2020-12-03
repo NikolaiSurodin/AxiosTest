@@ -10,6 +10,9 @@
       <div v-if="!isNews()">
         <router-link class="left" to="/news">Посмотреть новости</router-link>
       </div>
+      <div>
+        <router-link to="/company" class="left"><img src="@/assets/logo.png" height="30" width="30"/></router-link>
+      </div>
 
 
     </div>

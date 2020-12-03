@@ -6,7 +6,10 @@
       <b>Edit News</b>
       <input class="input" type="text" placeholder="Title" v-model="news.title.en">
       <b>Edit text news</b>
-      <wysiwyg v-model="news.text.en" />
+    </div>
+    <switcher v-model="show"/>
+    <div v-if="show">
+      <wysiwyg v-model="news.text.en"/>
     </div>
     <button type="button" class="btn" @click="SaveNews">Save</button>
     <button type="button" class="btn" style="color: #ff0000" @click="GoNews">Back</button>
@@ -15,15 +18,22 @@
 </template>
 <script>
 import axios from "axios";
+import switcher from "@/components/App/switcher";
 
 export default {
   name: 'newsForm',
+  data() {
+    return {
+      show: false
+    }
+  },
+  components: {switcher},
   props: ['news'],
   methods: {
     GoNews() {
       this.$router.go(-1)
     },
-    SaveNews(){
+    SaveNews() {
       axios
           .patch('https://sel-api.justplay.gg/api/v1/admin/news/{id}'.replace('{id}', this.news.id), this.news)
           .then(
@@ -31,7 +41,8 @@ export default {
           )
 
     }
-  }
+  },
+  watch: {}
 }
 </script>
 <style scoped>

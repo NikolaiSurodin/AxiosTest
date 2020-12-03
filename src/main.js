@@ -4,8 +4,10 @@ import router from "@/router";
 import {store} from "@/store";
 import axios from 'axios';
 import wysiwyg from "vue-wysiwyg";
+import Vuelidate from "vuelidate";
 
 Vue.use(wysiwyg, {});
+Vue.use(Vuelidate)
 
 
 Vue.config.productionTip = false

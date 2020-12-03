@@ -36,7 +36,6 @@ export default {
     error: false,
     editNews: false
   }),
-
   methods: {
     goBack() {
       this.$router.go(-1)
@@ -60,11 +59,10 @@ export default {
   },
   mounted() {
     this.GetNews()
-    this.$root.$on('save_news', ()=>{
+    this.$root.$on('save_news', () => {
       this.onSave()
     })
 
   }
-
 }
 </script>

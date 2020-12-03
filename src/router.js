@@ -6,6 +6,10 @@ import users from "@/components/users";
 import userDetail from "@/components/userDetail";
 import newsList from "@/components/newsList";
 import news from "@/components/news";
+import company from "@/components/company/company directory/company";
+import companyDetail from "@/components/company/company directory/companyDetail";
+import companyList from "@/components/company/company directory/companyList";
+import createCompany from "@/components/company/company directory/createCompany";
 
 
 Vue.use(Router)
@@ -19,7 +23,7 @@ export default new Router({
                 name: 'news',
                 path: '',
                 component: newsList,
-                meta:{
+                meta: {
                     requiresAuth: true
                 }
             }
@@ -74,8 +78,36 @@ export default new Router({
                 }
             ],
 
-        }
-
+        },
+        {
+            path: '/company',
+            component: company,
+            children: [
+                {
+                    name: 'company',
+                    path: '',
+                    component: companyList
+                }
+            ]
+        },
+        {
+            path: '/company/:id',
+            component: {
+                render(c) {
+                    return c('router-view');
+                }
+            },
+            children: [
+                {
+                    path: '',
+                    component: companyDetail
+                },
+                {
+                    path: '/__create',
+                    component: createCompany
+                }
+            ]
+        },
 
     ]
 })
