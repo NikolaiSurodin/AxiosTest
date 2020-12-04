@@ -44,8 +44,6 @@ export default {
   methods: {
     CreateCompany() {
       this.$store.dispatch('createCompany', this.model)
-      console.log(this.model.id)
-      console.log(this.model)
       this.$router.push('/company')
 
     }

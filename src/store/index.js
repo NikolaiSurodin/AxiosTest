@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
+import Company from '@/servces/Сompany'
+
 Vue.use(Vuex);
 
 const moduleAuth = {
@@ -89,8 +91,7 @@ const moduleCompany = {
     },
     actions: {
         createCompany({commit}, model) {
-            model.id = `f${(+new Date).toString(16)}`
-            commit('CREATE_MODEL', model)
+            commit('CREATE_MODEL', new Company(model))
         },
         updateCompany(){
 
