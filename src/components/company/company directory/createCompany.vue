@@ -44,7 +44,6 @@ export default {
   methods: {
     CreateCompany() {
       this.$store.dispatch('createCompany', this.model)
-      this.model.id = `f${(+new Date).toString(16)}` // генераци id как пример на дате, но как вот ее применить?
       console.log(this.model.id)
       console.log(this.model)
       this.$router.push('/company')

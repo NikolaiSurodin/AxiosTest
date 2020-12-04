@@ -11,8 +11,6 @@
         </li>
       </ul>
     </div>
-
-
     <div>
       <button class="btn" @click="editCompany">Создать компанию</button>
     </div>
@@ -22,13 +20,9 @@
 export default {
   name: 'companyList',
   companyList: {},
-  data() {
-    return {}
-  },
   methods: {
     editCompany() {
       this.$router.push('/__create')
-
     }
   },
   computed: {

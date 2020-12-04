@@ -10,6 +10,10 @@ import company from "@/components/company/company directory/company";
 import companyDetail from "@/components/company/company directory/companyDetail";
 import companyList from "@/components/company/company directory/companyList";
 import createCompany from "@/components/company/company directory/createCompany";
+import developers from "@/components/company/developers directory/developers";
+import frontDev from "@/components/company/developers directory/frontDev";
+import backDev from "@/components/company/developers directory/backDev";
+
 
 
 Vue.use(Router)
@@ -105,9 +109,22 @@ export default new Router({
                 {
                     path: '/__create',
                     component: createCompany
+                },
+                {
+                    path: '/developers',
+                    component: developers
+                },
+                {
+                    path: '/frontDev',
+                    component: frontDev
+                },
+                {
+                    path: '/backDev',
+                    component: backDev
                 }
+
             ]
-        },
+        }
 
     ]
 })

@@ -89,6 +89,7 @@ const moduleCompany = {
     },
     actions: {
         createCompany({commit}, model) {
+            model.id = `f${(+new Date).toString(16)}`
             commit('CREATE_MODEL', model)
         },
         updateCompany(){
