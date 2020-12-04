@@ -6,13 +6,13 @@ import users from "@/components/users";
 import userDetail from "@/components/userDetail";
 import newsList from "@/components/newsList";
 import news from "@/components/news";
-import company from "@/components/company/company directory/company";
-import companyDetail from "@/components/company/company directory/companyDetail";
-import companyList from "@/components/company/company directory/companyList";
-import createCompany from "@/components/company/company directory/createCompany";
-import developers from "@/components/company/developers directory/developers";
-import frontDev from "@/components/company/developers directory/frontDev";
-import backDev from "@/components/company/developers directory/backDev";
+import company from "@/components/company/company";
+import companyDetail from "@/components/company/companyDetail";
+import companyList from "@/components/company/companyList";
+import createCompany from "@/components/company/createCompany";
+import developers from "@/components/company/developers/developers";
+import frontDev from "@/components/company/developers/frontDev";
+import backDev from "@/components/company/developers/backDev";
 
 
 
