@@ -13,6 +13,7 @@ import createCompany from "@/components/company/createCompany";
 import developers from "@/components/company/developers/developers";
 import frontDev from "@/components/company/developers/frontDev";
 import backDev from "@/components/company/developers/backDev";
+import createDeveloper from "@/components/company/developers/createDeveloper";
 
 
 
@@ -81,7 +82,6 @@ export default new Router({
                     component: userDetail
                 }
             ],
-
         },
         {
             path: '/company',
@@ -121,10 +121,14 @@ export default new Router({
                 {
                     path: '/backDev',
                     component: backDev
+                },
+                {
+                    path: '/developers/__create',
+                    component: createDeveloper
                 }
 
-            ]
-        }
 
+            ]
+        },
     ]
 })

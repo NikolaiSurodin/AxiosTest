@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
-
-import Company from '@/servces/Сompany'
+//импортируем класс компании. нужно будет импортировать так все что есть
+import Company from '@/servces/Сompany';
+import Developer from "@/servces/Developer";
 
 Vue.use(Vuex);
 
@@ -90,15 +91,14 @@ const moduleCompany = {
         companies: []
     },
     actions: {
+
         createCompany({commit}, model) {
-            commit('CREATE_MODEL', new Company(model))
-        },
-        updateCompany(){
+            commit('CREATE_COMPANY', new Company(model))
 
         }
     },
     mutations: {
-        CREATE_MODEL(state, model) {
+        CREATE_COMPANY(state, model) {
             state.companies.push(model)
         }
 
@@ -109,11 +109,36 @@ const moduleCompany = {
         }
     }
 }
+const moduleDevelopers = {
+    state: {
+        developers: []
+
+    },
+    actions: {
+        createDev({commit}, developer) {
+            commit('CREATE_DEV', new Developer(developer))
+        }
+
+    },
+    mutations: {
+        CREATE_DEV(state, developer) {
+            state.developers.push(developer)
+        }
+
+    },
+    getters: {
+        developers(state) {
+            return state.developers
+        }
+
+    }
+}
 
 
 export const store = new Vuex.Store({
     modules: {
         a: moduleAuth,
-        b: moduleCompany
+        b: moduleCompany,
+        c: moduleDevelopers
     }
 });

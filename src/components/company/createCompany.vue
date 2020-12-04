@@ -32,9 +32,10 @@ export default {
         name: '',
         address: '',
         about: '',
-        id: ''
+        id:''
       }
     }
+
   },
   validations: {
     name: {required},
@@ -45,7 +46,7 @@ export default {
     CreateCompany() {
       this.$store.dispatch('createCompany', this.model)
       this.$router.push('/company')
-
+      console.log(this.model)
     }
   }
 }
