@@ -15,8 +15,6 @@ import frontDev from "@/components/company/developers/frontDev";
 import backDev from "@/components/company/developers/backDev";
 import createDeveloper from "@/components/company/developers/createDeveloper";
 
-
-
 Vue.use(Router)
 export default new Router({
     mode: 'history',
@@ -83,6 +81,7 @@ export default new Router({
                 }
             ],
         },
+
         {
             path: '/company',
             component: company,

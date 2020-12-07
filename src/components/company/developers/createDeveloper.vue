@@ -23,7 +23,6 @@
                   <span>Backend</span>
                 </label>
               </p>
-
             </form>
             <div class="card-action">
               <button type="submit" class="btn" @click="SaveDev">Save</button>
@@ -53,6 +52,7 @@ export default {
       this.$store.dispatch('createDev', this.developer)
       this.$router.push('/developers')
     }
+
 
   }
 }

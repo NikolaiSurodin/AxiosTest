@@ -20,7 +20,7 @@
         <button class="btn" type="button" @click="editMode= true">Редактировать профиль</button>
       </div>
 
-  </div>
+    </div>
     <footer-container/>
   </div>
 
@@ -37,12 +37,12 @@ export default {
   components: {FooterContainer, HeaderContainer, userForm},
   data: () => ({
     userDetail: {},
-    profile:{},
+    profile: {},
     error: false,
     editMode: false
   }),
-  methods:{
-    GetUser(){
+  methods: {
+    GetUser() {
       axios
           .get('https://sel-api.justplay.gg/api/v1/admin/users/{id}?expand=profile,settings'.replace('{id}', this.$route.params['id']))
           .then(response => {
@@ -54,14 +54,14 @@ export default {
             this.errored = true
           })
     },
-    OnSave(){
+    OnSave() {
       this.editMode = false
       this.GetUser()
     }
   },
   mounted() {
     this.GetUser()
-    this.$root.$on('save',() => {
+    this.$root.$on('save', () => {
       this.OnSave()
     })
 
@@ -76,7 +76,7 @@ export default {
   margin-left: 30px;
 }
 
-p{
+p {
   margin-left: 30px;
 }
 </style>

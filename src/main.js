@@ -5,6 +5,7 @@ import {store} from "@/store";
 import axios from 'axios';
 import wysiwyg from "vue-wysiwyg";
 import Vuelidate from "vuelidate";
+import 'materialize-css/dist/js/materialize.min'
 
 Vue.use(wysiwyg, {});
 Vue.use(Vuelidate)

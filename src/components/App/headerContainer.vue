@@ -13,7 +13,7 @@
       <div>
         <router-link to="/company" class="left"><img src="@/assets/logo.png" height="30" width="30"/></router-link>
       </div>
-
+      <span class="black-text">{{ date  }}</span>
 
     </div>
   </div>
@@ -23,6 +23,12 @@ import {mapGetters} from 'vuex'
 
 export default {
   name: 'headerContainer',
+  data() {
+    return {
+      date: new Date(),
+      interval: null
+    }
+  },
   computed: {
     ...mapGetters([
       'isLoggedIn'
@@ -40,6 +46,10 @@ export default {
     }
   },
   mounted() {
+    this.interval = setInterval(()=>{
+      this.date = new Date()
+    }, 1000)
+
   }
 }
 </script>

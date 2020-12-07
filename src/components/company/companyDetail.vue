@@ -26,9 +26,7 @@
 import HeaderContainer from "@/components/App/headerContainer";
 export default {
   name: "companyDetail",
-  components: {HeaderContainer},
-  companyDetail:{},
-  props:['createCompany'],
+  components: {HeaderContainer}
 }
 </script>
 

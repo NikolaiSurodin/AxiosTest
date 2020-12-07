@@ -95,11 +95,17 @@ const moduleCompany = {
         createCompany({commit}, model) {
             commit('CREATE_COMPANY', new Company(model))
 
+        },
+        deleteCompany({commit}, id){
+            commit('DELETE_COMPANY', id)
         }
     },
     mutations: {
         CREATE_COMPANY(state, model) {
             state.companies.push(model)
+        },
+        DELETE_COMPANY(){
+
         }
 
     },
