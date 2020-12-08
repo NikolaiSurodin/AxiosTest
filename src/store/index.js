@@ -88,7 +88,7 @@ const moduleAuth = {
 };
 const moduleCompany = {
     state: {
-        companies: []
+        companies: JSON.parse(localStorage.getItem("companies")) || []
     },
     actions: {
 
@@ -96,16 +96,17 @@ const moduleCompany = {
             commit('CREATE_COMPANY', new Company(model))
 
         },
-        deleteCompany({commit}, id){
+        deleteCompany({commit}, id) {
             commit('DELETE_COMPANY', id)
         }
     },
     mutations: {
         CREATE_COMPANY(state, model) {
             state.companies.push(model)
+            localStorage.setItem('companies', JSON.stringify(state.companies))
         },
-        DELETE_COMPANY(){
-
+        DELETE_COMPANY(state, id) {
+            state.companies.splice(id, 1)
         }
 
     },
@@ -117,19 +118,27 @@ const moduleCompany = {
 }
 const moduleDevelopers = {
     state: {
-        developers: []
+        developers: [],
+
 
     },
     actions: {
         createDev({commit}, developer) {
             commit('CREATE_DEV', new Developer(developer))
+        },
+        deleteDev({commit}, id) {
+            commit('DELETE_DEV', id)
         }
 
     },
     mutations: {
         CREATE_DEV(state, developer) {
             state.developers.push(developer)
+        },
+        DELETE_DEV(state, id) {
+            state.developers.filter(id, 1)
         }
+
 
     },
     getters: {

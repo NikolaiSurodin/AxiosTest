@@ -10,17 +10,17 @@
               <input type="number" class="card-title" placeholder="Возраст" v-model="developer.age">
               <input type="text" class="card-title" placeholder="Язык программирования" v-model="developer.lang">
             </div>
-            <form>
+            <form action="#">
               <p>
                 <label>
-                  <input type="checkbox"/>
-                  <span>Frontend</span>
+                  <input name="frontEnd" type="radio" checked />
+                  <span>FrontEnd</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input type="checkbox" checked="checked"/>
-                  <span>Backend</span>
+                  <input name="backEnd" type="radio" />
+                  <span>BackEnd</span>
                 </label>
               </p>
             </form>

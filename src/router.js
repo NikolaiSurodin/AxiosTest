@@ -14,6 +14,7 @@ import developers from "@/components/company/developers/developers";
 import frontDev from "@/components/company/developers/frontDev";
 import backDev from "@/components/company/developers/backDev";
 import createDeveloper from "@/components/company/developers/createDeveloper";
+import formCompany from "@/components/company/formCompany";
 
 Vue.use(Router)
 export default new Router({
@@ -104,6 +105,10 @@ export default new Router({
                 {
                     path: '',
                     component: companyDetail
+                },
+                {
+                    path: '/company/:id/edit',
+                    component: formCompany
                 },
                 {
                     path: '/__create',

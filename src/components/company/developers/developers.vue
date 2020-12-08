@@ -11,21 +11,21 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(dev, id) in developers"
+      <tr @deleteDev="deleteDev(id)"
+          v-for="(dev, id) in developers"
           :key="id">
         <td>{{ dev.name }}</td>
         <td>{{ dev.age }}</td>
         <td>{{ dev.lang }}</td>
         <td>
           <button class="btn">Редактировать</button>
-          <button class="card-image" type="button">
+          <button class="card-image" type="button" @click="DeleteDev">
             <img src="@/assets/trash.png" height="30" width="30"/></button>
         </td>
       </tr>
-
       </tbody>
     </table>
-
+    <p>{{'Общая численность работников: ' + developers.length}}</p>
     <button class="btn" type="button" @click="AddEmployee">добавить сотрудника</button>
     <router-link to="/company">Вернуться к компании</router-link>
   </div>
@@ -43,7 +43,11 @@ export default {
     AddEmployee() {
       this.$router.push('/developers/__create')
 
+    },
+    DeleteDev(){
+      this.$store.dispatch('deleteDev')
     }
+
 
   },
   computed: {

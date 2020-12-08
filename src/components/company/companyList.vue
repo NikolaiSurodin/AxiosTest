@@ -1,7 +1,9 @@
 <template>
   <div>
     <div v-if="editMode">
-      <form-company />
+      <form-company
+      :company="companies"
+      />
     </div>
     <div v-else>
       <h2 style="text-align: center">Company List</h2>
@@ -43,7 +45,7 @@ import FormCompany from "@/components/company/formCompany";
 export default {
   name: 'companyList',
   components: {FormCompany},
-  companyList: {},
+  companyList: [],
   data(){
     return{
       editMode: false
