@@ -27,7 +27,7 @@
           <td>
             <button class="btn" @click="editMode= true">Редактировать</button>
             <button class="card-image" type="button">
-              <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany"/></button>
+              <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany(model.id)"/></button>
           </td>
         </tr>
         </tbody>
@@ -56,8 +56,9 @@ export default {
     createCompany() {
       this.$router.push('/__create')
     },
-    DeleteCompany() {
-      this.$store.dispatch('deleteCompany', this.id)
+    DeleteCompany(id) {
+      this.$store.dispatch('deleteCompany', id)
+
     }
 
   },

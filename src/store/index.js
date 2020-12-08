@@ -136,8 +136,8 @@ const moduleDevelopers = {
         CREATE_DEV(state, developer) {
             state.developers.push(developer)
         },
-        DELETE_DEV(state, id) {
-            state.developers.filter(id, 1)
+        DELETE_DEV() {
+
         }
 
 
