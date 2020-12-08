@@ -57,7 +57,7 @@ export default {
       this.$router.push('/__create')
     },
     DeleteCompany() {
-      this.$store.dispatch('deleteCompany')
+      this.$store.dispatch('deleteCompany', this.id)
     }
 
   },

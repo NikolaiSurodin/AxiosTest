@@ -88,7 +88,7 @@ const moduleAuth = {
 };
 const moduleCompany = {
     state: {
-        companies: JSON.parse(localStorage.getItem("companies")) || []
+        companies: JSON.parse(localStorage.getItem('companies')) || []
     },
     actions: {
 
@@ -106,7 +106,8 @@ const moduleCompany = {
             localStorage.setItem('companies', JSON.stringify(state.companies))
         },
         DELETE_COMPANY(state, id) {
-            state.companies.splice(id, 1)
+                state.companies = state.companies.filter(el => el.id !== id)
+                localStorage.setItem('companies', JSON.stringify(state.companies))
         }
 
     },
