@@ -1,11 +1,5 @@
 <template>
-  <div>
-    <div v-if="editMode">
-      <form-company
-      :company="companies"
-      />
-    </div>
-    <div v-else>
+    <div>
       <h2 style="text-align: center">Company List</h2>
       <table>
         <thead>
@@ -25,7 +19,7 @@
           <td>численность</td>
           <td>{{ model.address }}</td>
           <td>
-            <button class="btn" @click="editMode= true">Редактировать</button>
+            <button class="btn" @click="editCompany(model.id)">Редактировать</button>
             <button class="card-image" type="button">
               <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany(model.id)"/></button>
           </td>
@@ -36,29 +30,28 @@
         <button class="btn" @click="createCompany">Создать компанию</button>
       </div>
     </div>
-
-  </div>
 </template>
 <script>
-import FormCompany from "@/components/company/formCompany";
+
 
 export default {
   name: 'companyList',
-  components: {FormCompany},
   companyList: [],
-  data(){
-    return{
+  data() {
+    return {
       editMode: false
     }
   },
 
   methods: {
     createCompany() {
-      this.$router.push('/__create')
+      this.$router.push('/company/__create')
     },
     DeleteCompany(id) {
       this.$store.dispatch('deleteCompany', id)
-
+    },
+    editCompany(id){
+      this.$router.push(`/company/${id}/edit`)
     }
 
   },

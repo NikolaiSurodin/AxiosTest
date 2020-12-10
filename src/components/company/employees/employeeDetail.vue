@@ -1,12 +1,12 @@
 <template>
 <div>
-  developer show
+  employee show
 </div>
 </template>
 
 <script>
 export default {
-  name: "developerDetail"
+  name: "EmployeeDetail"
 }
 </script>
 

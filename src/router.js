@@ -7,14 +7,16 @@ import userDetail from "@/components/userDetail";
 import newsList from "@/components/newsList";
 import news from "@/components/news";
 import company from "@/components/company/company";
-import companyDetail from "@/components/company/companyDetail";
 import companyList from "@/components/company/companyList";
+import companyDetail from "@/components/company/companyDetail";
 import createCompany from "@/components/company/createCompany";
-import developers from "@/components/company/developers/developers";
-import frontDev from "@/components/company/developers/frontDev";
-import backDev from "@/components/company/developers/backDev";
-import createDeveloper from "@/components/company/developers/createDeveloper";
+import employees from "@/components/company/employees/employees";
+import frontDev from "@/components/company/employees/frontDev";
+import backDev from "@/components/company/employees/backDev";
+import createEmployee from "@/components/company/employees/createEmployee";
+import employeeDetail from "@/components/company/employees/employeeDetail";
 import formCompany from "@/components/company/formCompany";
+
 
 Vue.use(Router)
 export default new Router({
@@ -56,8 +58,8 @@ export default new Router({
         {
             path: '/news/:id',
             component: {
-                render(n) {
-                    return n('router-view')
+                render(c) {
+                    return c('router-view')
                 }
             },
             children: [
@@ -82,7 +84,6 @@ export default new Router({
                 }
             ],
         },
-
         {
             path: '/company',
             component: company,
@@ -95,7 +96,7 @@ export default new Router({
             ]
         },
         {
-            path: '/company/:id',
+            path: '/company',
             component: {
                 render(c) {
                     return c('router-view');
@@ -104,31 +105,59 @@ export default new Router({
             children: [
                 {
                     path: '',
-                    component: companyDetail
+                    component: companyList
                 },
                 {
-                    path: '/company/:id/edit',
-                    component: formCompany
-                },
-                {
-                    path: '/__create',
+                    path: '__create',
                     component: createCompany
                 },
                 {
-                    path: '/developers',
-                    component: developers
-                },
-                {
-                    path: '/frontDev',
-                    component: frontDev
-                },
-                {
-                    path: '/backDev',
-                    component: backDev
-                },
-                {
-                    path: '/developers/__create',
-                    component: createDeveloper
+                    path: ':id',
+                    component: {
+                        render(c) {
+                            return c('router-view')
+                        }
+                    },
+                    children: [
+                        {
+                            path: '',
+                            component: companyDetail
+                        },
+                        {
+                            path: 'edit',
+                            component: formCompany
+                        },
+                        {
+                            path: 'employees',
+                            component: {
+                                render(c) {
+                                    return c('router-view')
+                                }
+                            },
+                            children:[
+                                {
+                                    path:'',
+                                    component:employees
+                                },
+                                {
+                                    path: '__create',
+                                    component: createEmployee
+                                },
+                                {
+                                    path: ':em_id',
+                                    component: employeeDetail
+                                }
+                            ]
+                        },
+                        {
+                            path: 'frontDev',
+                            component: frontDev
+                        },
+                        {
+                            path: 'backDev',
+                            component: backDev
+                        }
+                    ]
                 }
 
 

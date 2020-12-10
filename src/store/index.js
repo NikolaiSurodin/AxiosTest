@@ -3,8 +3,7 @@ import Vuex from 'vuex';
 import axios from 'axios';
 //импортируем класс компании. нужно будет импортировать так все что есть
 import Company from '@/servces/Сompany';
-import Developer from "@/servces/Developer";
-
+import Employee from "@/servces/Employee";
 Vue.use(Vuex);
 
 const moduleAuth = {
@@ -119,34 +118,31 @@ const moduleCompany = {
 }
 const moduleDevelopers = {
     state: {
-        developers: [],
-
+        employees: JSON.parse(localStorage.getItem('employee')) || [],
 
     },
     actions: {
-        createDev({commit}, developer) {
-            commit('CREATE_DEV', new Developer(developer))
+        createEmployee({commit}, employee) {
+                commit('CREATE_EMPLOYEE', new Employee(employee))
         },
-        deleteDev({commit}, id) {
-            commit('DELETE_DEV', id)
+        deleteEmployee({commit}, id) {
+            commit('DELETE_EMPLOYEE', id)
         }
-
     },
     mutations: {
-        CREATE_DEV(state, developer) {
-            state.developers.push(developer)
+        CREATE_EMPLOYEE(state, employee) {
+            state.employees.push(employee)
+            localStorage.setItem('employee', JSON.stringify(state.employees))
         },
-        DELETE_DEV() {
-
+        DELETE_EMPLOYEE(state, id) {
+            state.employees = state.employees.filter(el => el.id !== id)
+            localStorage.setItem('employee', JSON.stringify(state.employees))
         }
-
-
     },
     getters: {
-        developers(state) {
-            return state.developers
+        employees(state) {
+            return state.employees
         }
-
     }
 }
 

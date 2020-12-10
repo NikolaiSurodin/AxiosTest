@@ -24,7 +24,6 @@ import {required, minValue} from 'vuelidate/lib/validators'
 
 export default {
   name: "createCompany",
-  props: ['companyList'],
 
   data() {
     return {

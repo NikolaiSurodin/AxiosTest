@@ -1,7 +1,6 @@
 <template>
 <div>
   <header-container />
-FrontDev
 </div>
 </template>
 
@@ -9,7 +8,9 @@ FrontDev
 import HeaderContainer from "@/components/App/headerContainer";
 export default {
 name: "frontDev",
-  components: {HeaderContainer}
+  components: {HeaderContainer},
+  computed:{
+  }
 }
 </script>
 
