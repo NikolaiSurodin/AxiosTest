@@ -4,6 +4,7 @@ import axios from 'axios';
 //импортируем класс компании. нужно будет импортировать так все что есть
 import Company from '@/servces/Сompany';
 import Employee from "@/servces/Employee";
+
 Vue.use(Vuex);
 
 const moduleAuth = {
@@ -93,8 +94,11 @@ const moduleCompany = {
 
         createCompany({commit}, model) {
             commit('CREATE_COMPANY', new Company(model))
-
         },
+        upDateCompany({commit}, model){
+            commit('UP_DATE_COMPANY', model)
+        },
+
         deleteCompany({commit}, id) {
             commit('DELETE_COMPANY', id)
         }
@@ -104,11 +108,15 @@ const moduleCompany = {
             state.companies.push(model)
             localStorage.setItem('companies', JSON.stringify(state.companies))
         },
-        DELETE_COMPANY(state, id) {
-                state.companies = state.companies.filter(el => el.id !== id)
-                localStorage.setItem('companies', JSON.stringify(state.companies))
-        }
+        UP_DATE_COMPANY(state, id){
+            state.companies = state.companies.splice(id)
+            localStorage.setItem('companies', JSON.stringify(state.companies))
+        },
 
+        DELETE_COMPANY(state, id) {
+            state.companies = state.companies.filter(el => el.id !== id)
+            localStorage.setItem('companies', JSON.stringify(state.companies))
+        }
     },
     getters: {
         companies(state) {
@@ -123,8 +131,12 @@ const moduleDevelopers = {
     },
     actions: {
         createEmployee({commit}, employee) {
-                commit('CREATE_EMPLOYEE', new Employee(employee))
+            commit('CREATE_EMPLOYEE', new Employee(employee))
         },
+        updateEmployee({commit}, employee){
+          commit('UP_DATE_EMPLOYEE', employee)
+        },
+
         deleteEmployee({commit}, id) {
             commit('DELETE_EMPLOYEE', id)
         }
@@ -134,6 +146,11 @@ const moduleDevelopers = {
             state.employees.push(employee)
             localStorage.setItem('employee', JSON.stringify(state.employees))
         },
+        UP_DATE_EMPLOYEE(state, id){
+            state.employees = state.employees.splice(id)
+            localStorage.setItem('employee', JSON.stringify(state.employees))
+        },
+
         DELETE_EMPLOYEE(state, id) {
             state.employees = state.employees.filter(el => el.id !== id)
             localStorage.setItem('employee', JSON.stringify(state.employees))
@@ -145,12 +162,36 @@ const moduleDevelopers = {
         }
     }
 }
+const moduleTasks = {
+    state: {
+        tasks: JSON.parse(localStorage.getItem('tasks')) || []
+    },
+    actions: {
+        createTask({commit}, task) {
+            commit('CREATE_TASK', task)
+        }
+
+    },
+    mutations: {
+        CREATE_TASK(state, task) {
+            state.tasks.push(task)
+            localStorage.setItem('tasks', JSON.stringify(state.tasks))
+        }
+
+    },
+    getters: {
+        tasks(state) {
+            return state.tasks
+        }
 
 
+    }
+}
 export const store = new Vuex.Store({
     modules: {
         a: moduleAuth,
         b: moduleCompany,
-        c: moduleDevelopers
+        c: moduleDevelopers,
+        d: moduleTasks
     }
 });

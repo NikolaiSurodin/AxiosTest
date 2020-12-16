@@ -10,18 +10,19 @@
               <input type="number" class="card-title" placeholder="Возраст" v-model="employee.age">
               <input type="text" class="card-title" placeholder="Должность" v-model="employee.position">
             </div>
-            <form >
+            <form @submit.prevent="SaveEmployee">
+              <p class="small-text"> Выберете отдел: </p>
               <p v-for="(dep, key) in depart"
                  :key="key">
                 <label>
-                  <input name="group1" type="radio" :value="dep" checked/>
+                  <input name="group1" type="radio" :value="dep" checked v-model="employee.department"/>
                   <span>{{depart[key]}}</span>
                 </label>
               </p>
             </form>
             <div class="card-action">
-              <button type="submit" class="btn" @click="SaveEmployee">Save</button>
-              <router-link to="/employees" class="right">Go out</router-link>
+              <button type="button" class="btn" @click="SaveEmployee">Save</button>
+              <router-link :to="`/company/${this.$route.params['id']}/employees`" class="right">Go out</router-link>
             </div>
           </div>
         </div>
@@ -42,7 +43,8 @@ export default {
         age: '',
         position: '',
         type: '',
-        company_id: ''
+        company_id: '',
+        department:this.depart
       },
       depart:departments // складываем в переменную импортированный объект. Для дальнейшего использования в шаблоне
     }
@@ -53,8 +55,6 @@ export default {
       this.$store.dispatch('createEmployee', this.employee)
       this.$router.push(`/company/${this.$route.params['id']}/employees`)
     }
-
-
   }
 }
 </script>

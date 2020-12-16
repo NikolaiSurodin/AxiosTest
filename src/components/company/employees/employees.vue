@@ -20,7 +20,7 @@
         <td>{{ em.age }}</td>
         <td>{{ em.position }}</td>
         <td>
-          <button class="btn">Редактировать</button>
+          <button class="btn" @click="EditEmployee(em.id)">Редактировать</button>
           <button class="card-image" type="button" @click="DeleteEmployee(em.id)">
             <img src="@/assets/trash.png" height="30" width="30"/></button>
         </td>
@@ -48,6 +48,9 @@ export default {
     },
     DeleteEmployee(id) {
       this.$store.dispatch('deleteEmployee', id)
+    },
+    EditEmployee(em_id){
+      this.$router.push(`/company/${this.$route.params['id']}/employees/${em_id}/edit`)
     }
 
   },

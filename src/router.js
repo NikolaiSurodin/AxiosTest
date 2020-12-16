@@ -11,11 +11,12 @@ import companyList from "@/components/company/companyList";
 import companyDetail from "@/components/company/companyDetail";
 import createCompany from "@/components/company/createCompany";
 import employees from "@/components/company/employees/employees";
-import frontDev from "@/components/company/employees/frontDev";
-import backDev from "@/components/company/employees/backDev";
 import createEmployee from "@/components/company/employees/createEmployee";
 import employeeDetail from "@/components/company/employees/employeeDetail";
 import formCompany from "@/components/company/formCompany";
+import cars from "@/components/cars/cars";
+import taskDetail from "@/components/task/taskDetail";
+import formEmployee from "@/components/company/employees/formEmployee";
 
 
 Vue.use(Router)
@@ -134,10 +135,10 @@ export default new Router({
                                     return c('router-view')
                                 }
                             },
-                            children:[
+                            children: [
                                 {
-                                    path:'',
-                                    component:employees
+                                    path: '',
+                                    component: employees
                                 },
                                 {
                                     path: '__create',
@@ -145,19 +146,45 @@ export default new Router({
                                 },
                                 {
                                     path: ':em_id',
-                                    component: employeeDetail
+                                    component: {
+                                        render(c) {
+                                            return c('router-view')
+                                        }
+                                    },
+                                    children:[
+                                        {
+                                            path:'',
+                                            component:employeeDetail
+                                        },
+                                        {
+                                            path: 'edit',
+                                            component: formEmployee
+                                        }
+                                    ]
                                 }
                             ]
                         },
-                        {
-                            path: 'frontDev',
-                            component: frontDev
-                        },
-                        {
-                            path: 'backDev',
-                            component: backDev
-                        }
                     ]
+                },
+                {
+                    name: 'cars',
+                    path: '/cars',
+                    component: cars
+                },
+                {
+                    name: 'task',
+                    path: '/task',
+                    component: () => import('./components/task/task.vue')
+                },
+                {
+                    name: 'list',
+                    path: '/list',
+                    component: () => import('./components/task/list.vue')
+                },
+                {
+                    name: 'taskDetail',
+                    path: 'task/:id',
+                    component: taskDetail
                 }
 
 

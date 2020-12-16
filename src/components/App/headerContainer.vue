@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header #546e7a blue-grey darken-1" >
     <div class="container">
       <div v-if="isLoggedIn">
         <button class="btn text-lighten-10 right" type="button" @click="Logout">Выйти</button>
@@ -12,6 +12,7 @@
       </div>
       <div>
         <router-link to="/company" class="left"><img src="@/assets/logo.png" height="30" width="30"/></router-link>
+        <router-link to="/cars" > 🚔 </router-link>
       </div>
       <span class="black-text">{{ date  }}</span>
 

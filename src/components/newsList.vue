@@ -24,7 +24,6 @@
         @page-change="GetItemsList"
     ></sliding-pagination>
   </div>
-
 </template>
 <script>
 

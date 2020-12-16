@@ -39,10 +39,8 @@ export default {
           .then(
               this.$root.$emit('save_news')
           )
-
     }
-  },
-  watch: {}
+  }
 }
 </script>
 <style scoped>

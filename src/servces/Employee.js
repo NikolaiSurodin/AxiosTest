@@ -5,6 +5,7 @@ class Employee {
         this.position = options.position
         this.id = `f${(+new Date).toString(16)}`
         this.company_id = options.company_id
+        this.department = options.department
     }
 }
 

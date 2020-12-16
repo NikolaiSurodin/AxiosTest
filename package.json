@@ -14,6 +14,7 @@
     "vue": "^2.6.11",
     "vue-cli": "^2.9.6",
     "vue-router": "^3.4.8",
+    "vue-search-select": "^2.9.3",
     "vue-sliding-pagination": "^1.1.0",
     "vue-wysiwyg": "^1.7.2",
     "vuelidate": "^0.7.6",

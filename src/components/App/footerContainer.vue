@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="container">
       © 2020
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      <router-link class="grey-text text-lighten-4 right" to="/task">TASK</router-link>
     </div>
   </div>
 </template>

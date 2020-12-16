@@ -10,7 +10,7 @@
             <input type="text" class="card-title" placeholder="Составить описание компании" v-model="model.about">
           </div>
           <div class="card-action">
-            <button type="submit" class="btn" @submit.prevent="CreateCompany">Save</button>
+            <button type="submit" class="btn" @click="CreateCompany" >Save</button>
             <router-link to="/company" class="right">Go out</router-link>
           </div>
         </div>
@@ -20,11 +20,9 @@
 </template>
 
 <script>
-import {required, minValue} from 'vuelidate/lib/validators'
 
 export default {
   name: "createCompany",
-
   data() {
     return {
       model: {
@@ -36,11 +34,6 @@ export default {
     }
 
   },
-  validations: {
-    name: {required},
-    address: {minValue}
-  },
-
   methods: {
     CreateCompany() {
       this.$store.dispatch('createCompany', this.model)

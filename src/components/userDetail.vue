@@ -7,7 +7,6 @@
     <div class="card-action" v-if="editMode">
       <user-form
           :user="userDetail"
-
       ></user-form>
     </div>
     <div v-else>
@@ -30,7 +29,6 @@ import axios from 'axios'
 import HeaderContainer from "@/components/App/headerContainer";
 import FooterContainer from "@/components/App/footerContainer";
 import userForm from "@/components/userForm";
-
 
 export default {
   name: 'userDetail',
