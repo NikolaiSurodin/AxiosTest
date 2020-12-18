@@ -95,7 +95,7 @@ const moduleCompany = {
         createCompany({commit}, model) {
             commit('CREATE_COMPANY', new Company(model))
         },
-        upDateCompany({commit}, model){
+        upDateCompany({commit}, model) {
             commit('UP_DATE_COMPANY', model)
         },
 
@@ -108,7 +108,7 @@ const moduleCompany = {
             state.companies.push(model)
             localStorage.setItem('companies', JSON.stringify(state.companies))
         },
-        UP_DATE_COMPANY(state, id){
+        UP_DATE_COMPANY(state, id) {
             state.companies = state.companies.splice(id)
             localStorage.setItem('companies', JSON.stringify(state.companies))
         },
@@ -133,8 +133,8 @@ const moduleDevelopers = {
         createEmployee({commit}, employee) {
             commit('CREATE_EMPLOYEE', new Employee(employee))
         },
-        updateEmployee({commit}, employee){
-          commit('UP_DATE_EMPLOYEE', employee)
+        updateEmployee({commit}, employee) {
+            commit('UP_DATE_EMPLOYEE', employee)
         },
 
         deleteEmployee({commit}, id) {
@@ -146,7 +146,7 @@ const moduleDevelopers = {
             state.employees.push(employee)
             localStorage.setItem('employee', JSON.stringify(state.employees))
         },
-        UP_DATE_EMPLOYEE(state, id){
+        UP_DATE_EMPLOYEE(state, id) {
             state.employees = state.employees.splice(id)
             localStorage.setItem('employee', JSON.stringify(state.employees))
         },
@@ -164,11 +164,21 @@ const moduleDevelopers = {
 }
 const moduleTasks = {
     state: {
-        tasks: JSON.parse(localStorage.getItem('tasks')) || []
+        tasks: JSON.parse(localStorage.getItem('tasks')) || [].map(task => {
+            if (new Date(task.date) < new Date()){
+                task.status = 'Задача просрочена'
+            }
+        })
     },
     actions: {
         createTask({commit}, task) {
             commit('CREATE_TASK', task)
+        },
+        upDateTask({commit}, task) {
+            commit('UP_DATE_TASK', task)
+        },
+        completeTask({commit}, id){
+            commit('COMPLETE_TASK', id)
         }
 
     },
@@ -176,15 +186,31 @@ const moduleTasks = {
         CREATE_TASK(state, task) {
             state.tasks.push(task)
             localStorage.setItem('tasks', JSON.stringify(state.tasks))
+        },
+        UP_DATE_TASK(state, {id, description, date}){
+            const tasks = state.tasks.concat()
+
+            const idx = tasks.findIndex(t => t.id === id)
+            const task = tasks[idx]
+            const status = new Date(date) > new Date() ? 'В процессе..' : 'Задача просрочена!'
+            tasks[idx] = {...task, date, description, status}
+            state.tasks = tasks
+            localStorage.setItem('task', JSON.stringify(state.tasks))
+
+        },
+        COMPLETE_TASK(state, id){
+
+            const idx = state.tasks.findIndex(t => t.id === id)
+            state.tasks[idx].status = 'Задача выполнена'
+            localStorage.setItem('task', JSON.stringify(state.tasks))
         }
 
     },
     getters: {
         tasks(state) {
             return state.tasks
-        }
-
-
+        },
+        taskById: s => id => s.tasks.find(t => t.id === id)
     }
 }
 export const store = new Vuex.Store({

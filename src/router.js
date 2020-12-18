@@ -14,8 +14,8 @@ import employees from "@/components/company/employees/employees";
 import createEmployee from "@/components/company/employees/createEmployee";
 import employeeDetail from "@/components/company/employees/employeeDetail";
 import formCompany from "@/components/company/formCompany";
-import cars from "@/components/cars/cars";
 import taskDetail from "@/components/task/taskDetail";
+import task from "@/components/task/task";
 import formEmployee from "@/components/company/employees/formEmployee";
 
 
@@ -151,10 +151,10 @@ export default new Router({
                                             return c('router-view')
                                         }
                                     },
-                                    children:[
+                                    children: [
                                         {
-                                            path:'',
-                                            component:employeeDetail
+                                            path: '',
+                                            component: employeeDetail
                                         },
                                         {
                                             path: 'edit',
@@ -169,26 +169,40 @@ export default new Router({
                 {
                     name: 'cars',
                     path: '/cars',
-                    component: cars
+                    component: () => import('./components/cars/cars')
                 },
                 {
-                    name: 'task',
                     path: '/task',
-                    component: () => import('./components/task/task.vue')
-                },
-                {
-                    name: 'list',
-                    path: '/list',
-                    component: () => import('./components/task/list.vue')
-                },
-                {
-                    name: 'taskDetail',
-                    path: 'task/:id',
-                    component: taskDetail
-                }
+                    component: {
+                        render(c) {
+                            return c('router-view')
+                        }
+                    },
+                    children: [
+                        {
+                            path: '',
+                            component: task
+                        },
+                        {
+                            path: ':id',
+                            component: taskDetail
+                        }
 
+            ]},
 
-            ]
+        {
+            name: 'list',
+            path: '/list',
+            component: () => import('./components/task/list.vue')
         },
+        {
+            name: 'taskDetail',
+            path: 'task/:id',
+            component: () => import('./components/task/taskDetail')
+        }
+
+
     ]
+},
+]
 })

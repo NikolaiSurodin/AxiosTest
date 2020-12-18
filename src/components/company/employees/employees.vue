@@ -1,32 +1,35 @@
 <template>
   <div>
     <header-container/>
-    <table>
-      <thead>
-      <tr>
-        <th>Имя</th>
-        <th>Возраст</th>
-        <th>Должность</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr
-          v-for="(em, id) in employees"
-          :key="id">
-        <router-link :to="`employees/${em.id}`">
-          {{ em.name }}
-        </router-link>
-        <td>{{ em.age }}</td>
-        <td>{{ em.position }}</td>
-        <td>
-          <button class="btn" @click="EditEmployee(em.id)">Редактировать</button>
-          <button class="card-image" type="button" @click="DeleteEmployee(em.id)">
-            <img src="@/assets/trash.png" height="30" width="30"/></button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="row">
+      <table class="input-field col l6">
+        <thead>
+        <tr>
+          <th>Имя</th>
+          <th>Возраст</th>
+          <th>Должность</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr
+            v-for="(em, id) in employees"
+            :key="id">
+          <router-link :to="`employees/${em.id}`">
+            {{ em.name }}
+          </router-link>
+          <td>{{ em.age }}</td>
+          <td>{{ em.position }}</td>
+          <td>
+            <button class="btn" @click="EditEmployee(em.id)">Редактировать</button>
+            <button class="card-image" type="button" @click="DeleteEmployee(em.id)">
+              <img src="@/assets/trash.png" height="30" width="30"/></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
     <p>{{ 'Общая численность работников: ' + employees.length }}</p>
     <button class="btn" type="button" @click="AddEmployee">добавить сотрудника</button>
     <router-link :to="`/company/${$route.params['id']}`">Вернуться к компании</router-link>

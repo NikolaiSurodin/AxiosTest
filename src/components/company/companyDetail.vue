@@ -11,14 +11,14 @@
         </div>
       </div>
       <div class="card-tabs">
-        <ul class="tabs tabs-fixed-width">
+        <ul class="tabs tabs-fixed-width 30px">
           <li class="tab">
             <router-link class="active" :to="`/company/${$route.params['id']}/employees`">Все сотрудники / Добавить
             </router-link>
           </li>
-          <li class="tab" v-for="(department, key) in department"
+          <li class="tab" v-for="(dep, key) in department"
               :key="key">
-            <router-link class="active" :to="`/company/${$route.params['id']}/#${key}`">{{ department }}</router-link>
+            <router-link class="active" :to="`/company/${$route.params['id']}/#${key}`">{{ dep }}</router-link>
           </li>
         </ul>
       </div>
@@ -28,16 +28,12 @@
         <div id="test6">ID: {{ companies.id }}</div>
       </div>
     </div>
-    <div>
-      <ul>
-        <li v-for="(em, key) in employeeOnDepartments"
-            :key="key"
-        >
-          {{ em.name }}
-
-        </li>
-      </ul>
-    </div>
+    <ul v-for="(emp, key) in employeeOnDepartments"
+        :key="key">
+      <li>
+        {{ emp.name }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -53,14 +49,6 @@ export default {
       department: Department
     }
   },
-  methods: {
-    employeeOnDepartments() {
-      if (this.$route.hash !== '') {
-        return  this.employees.filter(el => el.department['key'] === this.$route.hash.replace('#', ''))
-      }
-      return this.employees
-    }
-  },
   computed: {
     companies() {
       let com = this.$store.getters.companies.filter(el => el.id === this.$route.params['id'])
@@ -68,7 +56,16 @@ export default {
     },
     employees() {
       return this.$store.getters.employees.filter(el => el.company_id === this.$route.params['id'])
+    },
+    employeeOnDepartments() {
+      if (this.$route.hash !== '') {
+        return this.employees.filter(el => el.department['key'] === this.$route.hash.replace('#', ''))
+      }
+      return this.employees
     }
+  },
+  mounted() {
+    console.log(this.employeeOnDepartments)
   }
 }
 </script>

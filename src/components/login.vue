@@ -5,24 +5,26 @@
       <h1>Login</h1>
       <p>Введите данные для входа:
       </p>
-      <div class="input-field">
-        <input
-            id="email"
-            type="text"
-            v-model="email"
-        >
-        <label for="email">Email</label>
+      <div class="row">
+        <div class="input-field col s3">
+          <input
+              id="email"
+              type="text"
+              v-model="email"
+          >
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s3">
+          <input
+              id="password"
+              type="password"
+              v-model="password"
+          >
+          <label for="password">Пароль</label>
+        </div>
+        <div>
       </div>
-      <p></p>
-      <div class="input-field">
-        <input
-            id="password"
-            type="password"
-            v-model="password"
-        >
-        <label for="password">Пароль</label>
-      </div>
-      <div>
+
         <p></p>
         <button
            class="btn" type="submit" @click.prevent="SubmitLogin"

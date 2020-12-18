@@ -19,7 +19,12 @@
 
 export default {
   name: "carsList",
-  props: ['cars']
+  props: ['cars'],
+  data(){
+    return{
+
+    }
+  }
 
 }
 </script>

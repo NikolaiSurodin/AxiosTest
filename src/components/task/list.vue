@@ -2,7 +2,17 @@
   <div>
     <navbar/>
     <h1>LIST TASK</h1>
-
+    <div class="row">
+      <div class="input-field col s3">
+        <select ref="select" v-model="filter">
+          <option value="" disabled selected>Выберете фильтр..</option>
+          <option value="В процессе..">В процессе..</option>
+          <option value="Задача просрочена!">Просроченые задачи</option>
+          <option value="Задача выполнена">Выполненные задачи</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-small green" v-if="filter" @click="filter = null">Сбросить фильтр</button>
     <hr>
 
     <table>
@@ -17,7 +27,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(task, idx) in tasks"
+      <tr v-for="(task, idx) in tasksFilter"
           :key="idx"
       >
         <td>{{ idx + 1 }}</td>
@@ -42,17 +52,33 @@ import Navbar from "@/components/task/navbar";
 
 export default {
   name: "list",
+  data() {
+    return {
+      filter: null
+    }
+  },
   components: {Navbar},
   computed: {
     tasks() {
       return this.$store.getters.tasks
-
+    },
+    tasksFilter() {
+      return this.tasks.filter(t => {
+        if (!this.filter) {
+          return true
+        }
+        return t.status === this.filter
+      })
     }
   },
-  methods:{
-    taskDetail(id){
-      this.$router.push(`/task/${id} `)
-    }
+  methods: {
+    taskDetail(id) {
+      this.$router.push(`/task/${id}`)
+    },
+  },
+  mounted() {
+    // eslint-disable-next-line no-undef
+    M.FormSelect.init(this.$refs.select)
   }
 }
 </script>

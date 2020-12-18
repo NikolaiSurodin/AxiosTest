@@ -11,7 +11,7 @@
           </div>
           <div class="card-action">
             <button type="submit" class="btn" @click="CreateCompany" >Save</button>
-            <router-link to="/company" class="right">Go out</router-link>
+            <router-link to="/company" class=" btn red right">Go out</router-link>
           </div>
         </div>
       </div>
