@@ -2,7 +2,7 @@
   <div>
     <header-container/>
     <div class="row">
-      <table class="input-field col l6">
+      <table class="input-field col s6">
         <thead>
         <tr>
           <th>Имя</th>
@@ -31,8 +31,8 @@
     </div>
 
     <p>{{ 'Общая численность работников: ' + employees.length }}</p>
-    <button class="btn" type="button" @click="AddEmployee">добавить сотрудника</button>
-    <router-link :to="`/company/${$route.params['id']}`">Вернуться к компании</router-link>
+    <button class="btn green" style="margin-right: 10px" type="button" @click="AddEmployee">добавить сотрудника</button>
+    <router-link :to="`/company/${$route.params['id']}`" class="btn-small ">Вернуться к компании</router-link>
   </div>
 </template>
 <script>

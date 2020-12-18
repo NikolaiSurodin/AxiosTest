@@ -25,9 +25,9 @@
           <td>численность</td>
           <td>{{ model.address }}</td>
           <td>
-            <button class="btn" @click="editMode= true">Редактировать</button>
+            <button class="btn" @click="editCompany(model.id)">Редактировать</button>
             <button class="card-image" type="button">
-              <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany"/></button>
+              <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany(model.id)"/></button>
           </td>
         </tr>
         </tbody>
@@ -54,12 +54,14 @@ export default {
 
   methods: {
     createCompany() {
-      this.$router.push('/__create')
+      this.$router.push('/company/__create')
     },
-    DeleteCompany() {
-      this.$store.dispatch('deleteCompany', this.id)
+    DeleteCompany(id) {
+      this.$store.dispatch('deleteCompany',id)
+    },
+    editCompany(id){
+      this.$router.push(`/company/${id}/edit`)
     }
-
   },
   computed: {
     companies() {
