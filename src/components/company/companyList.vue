@@ -25,9 +25,11 @@
           <td>численность</td>
           <td>{{ model.address }}</td>
           <td>
-            <button class="btn" @click="editCompany(model.id)">Редактировать</button>
-            <button class="card-image" type="button">
-              <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany(model.id)"/></button>
+            <div>
+              <button class="btn" style="margin-right: 30px" @click="editCompany(model.id)">Редактировать</button>
+              <button class="card-image" type="button">
+                <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany(model.id)"/></button>
+            </div>
           </td>
         </tr>
         </tbody>
