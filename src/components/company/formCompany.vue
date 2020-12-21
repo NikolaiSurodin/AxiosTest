@@ -3,7 +3,7 @@
     <form class="row">
       <h3>edit you company</h3>
       <div class="input-field">
-        <input id="title" type="text" class="validate" required v-model="company.name">
+        <input id="title" type="text" v-model="company.name">
         <label for="title">Company name</label>
         <span class="helper-text" data-error="Обязательно заполнить"></span>
       </div>
@@ -26,10 +26,14 @@
 </template>
 
 <script>
+import {validationMixin} from 'vuelidate'
+import {required} from 'vuelidate/lib/validators'
 export default {
+  mixins:[validationMixin],
   name: "formCompany",
   data(){
     return{
+
     }
   },
   methods:{
@@ -37,6 +41,9 @@ export default {
       this.$store.dispatch('upDateCompany')
       this.$router.push('/company')
     }
+  },
+  validations:{
+      name:{required}
   },
   computed:{
     company() {
