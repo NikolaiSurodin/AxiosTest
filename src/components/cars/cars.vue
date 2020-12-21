@@ -4,8 +4,8 @@
   <div class="container">
     <add-car :on-add="addCar"/>
     <div class="columns">
-      <cars-list @select="selectCar" :cars="cars"/>
-      <cars-detail :car="current" @remove="removeCar"/>
+      <cars-list @select="selectCar" :cars="cars.name"/>
+      <cars-detail :description="current" @remove="removeCar"/>
     </div>
   </div>
   </div>

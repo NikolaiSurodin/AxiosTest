@@ -35,7 +35,7 @@ export default {
       const car = {
         name: this.name,
         description: this.description,
-        id: Date.now().toString()
+
       }
       this.name = ''
       this.description = ''

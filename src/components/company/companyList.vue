@@ -11,7 +11,6 @@
         <thead>
         <tr>
           <th>Название компании</th>
-          <th>Численность</th>
           <th>Адрес</th>
           <th></th>
         </tr>
@@ -22,7 +21,7 @@
           <router-link :to="`company/${model.id}`">
             {{ model.name }}
           </router-link>
-          <td>численность</td>
+
           <td>{{ model.address }}</td>
           <td>
             <div>

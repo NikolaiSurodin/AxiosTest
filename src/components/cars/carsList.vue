@@ -1,29 +1,33 @@
 <template>
   <div>
-  <div class="list" :class="{empty: cars.length === 0}">
-    <div v-if="cars.length">
-      <div class="card"
-           v-for="(car, key) in cars"
-           :key="key"
-           @click="$emit('select', car.id)"
-      >
-        <h2 class="card-title">{{ car.name }}</h2>
+    <div class="list" :class="{empty: cars.length === 0}">
+      <div v-if="cars.length">
+        <div class="card"
+             v-for="(car, key) in cars"
+             :key="key"
+         @click="$emit('select', car.id)"
+        >
+          <h2 class="card-title">{{ car.name }}</h2>
+        </div>
       </div>
+      <p v-else class="center">Нет. Добавьте</p>
     </div>
-    <p v-else class="center">Нет. Добавьте</p>
-  </div>
   </div>
 </template>
 
 <script>
+const data = require('@/assets/cars.json')
 
 export default {
   name: "carsList",
-  props: ['cars'],
-  data(){
-    return{
-
+  props:['description'],
+  data() {
+    return {
+      cars: []
     }
+  },
+  created() {
+    this.cars = [...data]
   }
 
 }
