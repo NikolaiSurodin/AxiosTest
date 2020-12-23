@@ -1,62 +1,56 @@
 <template>
-  <div>
-    <div class="list" :class="{empty: cars.length === 0}">
-      <div v-if="cars.length">
-        <div class="card"
-             v-for="(car, key) in cars"
-             :key="key"
-         @click="$emit('select', car.id)"
-        >
-          <h2 class="card-title">{{ car.name }}</h2>
-        </div>
-      </div>
-      <p v-else class="center">Нет. Добавьте</p>
-    </div>
+  <div class="cars-list container">
+    <h2>выберете марку</h2>
+    <popup
+        v-if="isInfoPopupVisible"
+        @closePopup="closeInfoPopup"
+
+    >
+      <p>{{cars}}</p>
+    </popup>
+
+
+    <ul v-for="(car, id) in cars"
+        :key="id"
+    >
+      <li>
+        <router-link :to="`cars/${car.id}`">
+          {{ car.name }}
+        </router-link>
+        <button class="btn-small" @click="showPopupInfo">show info</button>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-const data = require('@/assets/cars.json')
-
+import cars from "@/components/cars/cars";
+import popup from "@/components/cars/popup";
 export default {
   name: "carsList",
-  props:['description'],
+  props:['car'],
   data() {
     return {
-      cars: []
+      cars,
+      isInfoPopupVisible:false
     }
   },
-  created() {
-    this.cars = [...data]
+  methods:{
+    showPopupInfo(){
+      this.isInfoPopupVisible = true
+    },
+    closeInfoPopup(){
+      this.isInfoPopupVisible =false
+    }
+  },
+  components:{
+    popup
   }
+
 
 }
 </script>
 
-<style>
-.card {
-  border-bottom: 1px solid #eee;
-  padding: 1rem;
-  transition: 300ms all ease;
-  cursor: pointer;
-  background: #fff;
-}
+<style scoped>
 
-.empty {
-  padding: 1rem;
-  background: #fff !important;
-}
-
-.card-title {
-  padding: 1rem;
-  text-align: center;
-}
-
-.card:hover {
-  background: #eee;
-}
-
-.list {
-  background: #fffeee;
-}
 </style>

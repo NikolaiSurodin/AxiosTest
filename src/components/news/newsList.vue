@@ -6,12 +6,12 @@
     <div v-if="error" class="alert">
       Мы не смогли загрузить новости, попробуйсте позже!
     </div>
-    <div>
+    <div class="card" v-else v-for="(n, id) in items"
+         :key="id" >
       <ul>
         <loader v-if="loading"/>
-        <li v-else v-for="(n, id) in items"
-            :key="id">
-          <router-link :to="`news/${n.id}`">
+        <li >
+           <router-link :to="`news/${n.id}`">
             {{ n.slug }}
           </router-link>
         </li>
@@ -51,5 +51,12 @@ export default {
 <style scoped>
 ul {
   margin-left: 30px;
+}
+.card {
+  border-bottom: 1px solid #eee;
+  padding: 1rem;
+  transition: 300ms all ease;
+  cursor: pointer;
+  background: #fff;
 }
 </style>

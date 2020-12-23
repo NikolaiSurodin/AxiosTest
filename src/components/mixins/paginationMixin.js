@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import loader from "@/components/loader";
+import loader from "@/components/App/loader";
 import axios from 'axios'
 import SlidingPagination from 'vue-sliding-pagination'
 

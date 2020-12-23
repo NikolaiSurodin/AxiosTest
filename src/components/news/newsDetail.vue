@@ -26,7 +26,7 @@
 import axios from 'axios'
 import HeaderContainer from "@/components/App/headerContainer";
 import FooterContainer from "@/components/App/footerContainer";
-import NewsForm from "@/components/newsForm";
+import NewsForm from "@/components/news/newsForm";
 
 export default {
   name: 'newsDetail',

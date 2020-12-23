@@ -1,7 +1,8 @@
 <template>
   <div>
+    <header-container />
     <form>
-      <h3>Edit you employee</h3>
+      <h3>Редактировать данные сотрудника:</h3>
       <div class="row">
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
@@ -20,8 +21,8 @@
               </p>
             </form>
             <div class="card-action">
-              <button type="button" class="btn" @click="upDateEmployee">Update!</button>
-              <router-link :to="`/company/${this.$route.params['id']}/employees`" class="right">Go out</router-link>
+              <button type="button" class="btn" @click="upDateEmployee">Обновить</button>
+              <router-link :to="`/company/${this.$route.params['id']}/employees`" class="right">Отмена</router-link>
             </div>
           </div>
         </div>
@@ -32,8 +33,10 @@
 
 <script>
 import departments from "@/servces/Department";
+import HeaderContainer from "@/components/App/headerContainer";
 export default {
   name: "formEmployee",
+  components: {HeaderContainer},
   data() {
     return {
       depart:departments

@@ -25,5 +25,6 @@ export default {
   bottom: 0;
   width: 100%;
   flex-basis: available;
+  position: fixed;
 }
 </style>

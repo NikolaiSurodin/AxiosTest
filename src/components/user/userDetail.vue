@@ -28,7 +28,7 @@
 import axios from 'axios'
 import HeaderContainer from "@/components/App/headerContainer";
 import FooterContainer from "@/components/App/footerContainer";
-import userForm from "@/components/userForm";
+import userForm from "@/components/user/userForm";
 
 export default {
   name: 'userDetail',

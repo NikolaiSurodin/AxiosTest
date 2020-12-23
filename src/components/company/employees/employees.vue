@@ -1,7 +1,8 @@
 <template>
+
   <div>
     <header-container/>
-    <div class="row">
+    <div class="container">
       <table class="input-field col s6">
         <thead>
         <tr>
@@ -28,11 +29,11 @@
         </tr>
         </tbody>
       </table>
+      <p>{{ 'Общая численность работников: ' + employees.length }}</p>
+      <button class="btn green" style="margin-right: 10px" type="button" @click="AddEmployee">добавить сотрудника</button>
+      <router-link :to="`/company/${$route.params['id']}`" class="btn-small ">Вернуться к компании</router-link>
     </div>
 
-    <p>{{ 'Общая численность работников: ' + employees.length }}</p>
-    <button class="btn green" style="margin-right: 10px" type="button" @click="AddEmployee">добавить сотрудника</button>
-    <router-link :to="`/company/${$route.params['id']}`" class="btn-small ">Вернуться к компании</router-link>
   </div>
 </template>
 <script>

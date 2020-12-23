@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import loader from "@/components/loader"
+import loader from "@/components/App/loader"
 import SlidingPagination from 'vue-sliding-pagination'
 import paginationMixin from "@/components/mixins/paginationMixin";
 import FooterContainer from "@/components/App/footerContainer";
