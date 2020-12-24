@@ -9,25 +9,39 @@
       </div>
       <p>Страница: {{ currentPage }}</p>
       <loader v-if="loading"></loader>
-      <ul v-else>
-        <li v-for="(item,id) in items"
+      <table>
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item,id) in items"
             :key="id">
-          <router-link :to="`users/${item.id}#page=${currentPage}`">
-            {{ item.username }}
-          </router-link>
-        </li>
-      </ul>
-      <sliding-pagination
-          v-model="page"
-          :current="currentPage"
-          :total="totalPages"
-          @page-change="GetItemsList"
-      ></sliding-pagination>
-      <div>
-        <footer-container/>
+          <td>
+            <router-link :to="`users/${item.id}#page=${currentPage}`">
+              {{ item.username }}
+            </router-link>
+          </td>
+          <td>
+            {{ item.email }}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <sliding-pagination
+            v-model="page"
+            :current="currentPage"
+            :total="totalPages"
+            @page-change="GetItemsList"
+        ></sliding-pagination>
       </div>
     </div>
-
+    <div class="footer-copyright">
+      <footer-container/>
+    </div>
   </div>
 </template>
 <script>
@@ -70,7 +84,8 @@ p {
 ul {
   margin-left: 20px;
 }
-.card{
+
+.card {
   height: 130px;
   width: 400px;
 }

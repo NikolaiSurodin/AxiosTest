@@ -11,7 +11,7 @@
         <div v-if="isIndex()">
         <ul class="left hide-on-med-and-down">
           <li><a href="#">Sass</a></li>
-          <li><a href="#">Components</a></li>
+          <li><router-link to="#">INFO</router-link></li>
           <li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript">JavaScript</a></li>
         </ul>
         </div>

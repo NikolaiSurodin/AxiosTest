@@ -18,8 +18,6 @@ import taskDetail from "@/components/task/taskDetail";
 import task from "@/components/task/task";
 import formEmployee from "@/components/company/employees/formEmployee";
 import NotFound from '@/components/App/404'
-import carsList from "@/components/cars/carsList";
-import carDetail from "@/components/cars/carDetail";
 import anonymousPage from "@/components/login/anonymousPage";
 import index from '@/components/login/index'
 import layout from "@/components/App/layout";
@@ -38,11 +36,6 @@ export default new Router({
             path: '/login',
             name: 'login',
             component: login
-        },
-        {
-            path: '/index',
-            name: 'indexPage',
-            component: index
         },
         {
             path: '/users',
@@ -68,6 +61,11 @@ export default new Router({
                     ],
                 },
                 //напихать сюда
+                {
+                    path: '/index',
+                    name: 'indexPage',
+                    component: index
+                },
                 {
                     path: '/news',
                     component: news,
@@ -213,25 +211,6 @@ export default new Router({
                     component: () => import('./components/task/taskDetail')
                 }
             ]
-        },
-        {
-            path: '/cars',
-            component: {
-                render(c) {
-                    return c('router-view')
-                }
-            },
-            children: [
-                {
-                    path: '',
-                    component: carsList
-                },
-                {
-                    path: ':id',
-                    component: carDetail
-                }
-            ]
-
         },
         {
             path: '*',

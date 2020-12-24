@@ -13,9 +13,7 @@
       <button type="button" class="btn" @click="saveUser">save</button>
 
       <button type="button" class="btn" style="color: brown" @click="backUsers">Back to users</button>
-
     </div>
-
   </div>
 </template>
 <script>

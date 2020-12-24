@@ -1,7 +1,5 @@
 <template>
-
   <div>
-    <header-container/>
     <div class="container">
       <table class="input-field col s6">
         <thead>
@@ -37,11 +35,9 @@
   </div>
 </template>
 <script>
-import HeaderContainer from "@/components/App/headerContainer";
 
 export default {
   name: 'employees',
-  components: {HeaderContainer},
   data() {
     return {}
   },

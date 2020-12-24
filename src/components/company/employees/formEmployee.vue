@@ -1,6 +1,5 @@
 <template>
   <div>
-    <header-container />
     <form>
       <h3>Редактировать данные сотрудника:</h3>
       <div class="row">
@@ -33,10 +32,8 @@
 
 <script>
 import departments from "@/servces/Department";
-import HeaderContainer from "@/components/App/headerContainer";
 export default {
   name: "formEmployee",
-  components: {HeaderContainer},
   data() {
     return {
       depart:departments
