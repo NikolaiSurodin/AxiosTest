@@ -1,8 +1,11 @@
 <template>
   <div>
-    <header-container/>
     <form @submit.prevent="checkForm">
       <h3>Create you company</h3>
+      <p class="text-card">
+        Добавляйте компанию.<br>
+        Укажите необходимы данные и нажимите кнопку "Сохранить"
+      </p>
       <div class="row">
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
@@ -26,8 +29,8 @@
               <p v-if="$v.model.$dirty && !$v.model.required">Составьте описание</p>
             </div>
             <div class="card-action">
-              <button type="submit" class="btn green">Save</button>
-              <button @click="GoOut" class=" btn red right">Go out</button>
+              <button type="submit" class="btn green">Сохранить</button>
+              <button @click="GoOut" class=" btn red right">Вернуться к таблице</button>
             </div>
           </div>
         </div>
@@ -39,10 +42,8 @@
 <script>
 import {validationMixin} from 'vuelidate'
 import {minLength, required} from 'vuelidate/lib/validators'
-import HeaderContainer from "@/components/App/headerContainer";
 
 export default {
-  components: {HeaderContainer},
   mixins: [validationMixin],
   name: "createCompany",
   data() {

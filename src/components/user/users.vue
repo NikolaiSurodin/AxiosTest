@@ -1,9 +1,12 @@
 <template>
   <div>
-    <header-container/>
     <div class="card-action">
-      <h1 align="center">Users</h1>
+      <h1 align="center">Game admin account</h1>
       <hr>
+      <div class="card item">
+        В данном разделе предствлены игроки проекта.
+        Выберете пользователя для просмотра и редактирования профиля:
+      </div>
       <p>Страница: {{ currentPage }}</p>
       <loader v-if="loading"></loader>
       <ul v-else>
@@ -32,7 +35,6 @@ import loader from "@/components/App/loader"
 import SlidingPagination from 'vue-sliding-pagination'
 import paginationMixin from "@/components/mixins/paginationMixin";
 import FooterContainer from "@/components/App/footerContainer";
-import HeaderContainer from "@/components/App/headerContainer";
 
 export default {
   name: 'users',
@@ -43,7 +45,6 @@ export default {
     }
   },
   components: {
-    HeaderContainer,
     FooterContainer,
     loader, SlidingPagination
   },
@@ -68,6 +69,10 @@ p {
 
 ul {
   margin-left: 20px;
+}
+.card{
+  height: 130px;
+  width: 400px;
 }
 
 </style>

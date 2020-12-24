@@ -1,10 +1,8 @@
 <template>
   <div>
-    <header-container />
-
     <form class="form">
       <h3>Редактировать:</h3>
-      <div class="form">
+      <div class="form-table">
         <div class="input-field">
           <input id="title" type="text" v-model="company.name">
           <label for="title">Company name</label>
@@ -30,9 +28,8 @@
 <script>
 import {validationMixin} from 'vuelidate'
 import {required} from 'vuelidate/lib/validators'
-import HeaderContainer from "@/components/App/headerContainer";
 export default {
-  components: {HeaderContainer},
+
   mixins:[validationMixin],
   name: "formCompany",
   data(){
@@ -89,5 +86,13 @@ export default {
 .area{
   height: 80px;
   width: 200px;
+}
+.form-table{
+  height: 500px;
+  width: 500px;
+}
+.area{
+  width:500px ;
+  height: 150px;
 }
 </style>

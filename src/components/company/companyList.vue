@@ -10,7 +10,7 @@
         <h2 style="text-align: center">Company List</h2>
         <hr>
         <p>
-          Ваши компании:
+          Компании в разработке:
         </p>
         <table>
           <thead>

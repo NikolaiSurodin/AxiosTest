@@ -9,7 +9,6 @@
       ></news-form>
     </div>
     <div v-else>
-      <header-container/>
       <h1>{{ this.newsDetail.title.en }} </h1>
       <button class="btn" type="button" @click="goBack">Back</button>
       <p>Дата публикации новости: </p>
@@ -24,13 +23,12 @@
 </template>
 <script>
 import axios from 'axios'
-import HeaderContainer from "@/components/App/headerContainer";
 import FooterContainer from "@/components/App/footerContainer";
 import NewsForm from "@/components/news/newsForm";
 
 export default {
   name: 'newsDetail',
-  components: {NewsForm, FooterContainer, HeaderContainer},
+  components: {NewsForm, FooterContainer},
   data: () => ({
     newsDetail: {},
     error: false,

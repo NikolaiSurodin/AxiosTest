@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="container">
       © 2020
-      <router-link class="grey-text text-lighten-4 right" to="/task">TASK</router-link>
+
     </div>
   </div>
 </template>
@@ -14,17 +14,15 @@ export default {
 <style>
 .footer{
   background-color: #434445;
-  height: 60px;
+  height: 40px;
   text-align: center;
   font-size: 20px;
   margin: 0;
-
   padding-bottom:5px;
   color: #a4a4a4;
   left: 0;
   bottom: 0;
-  width: 100%;
-  flex-basis: available;
-  position: fixed;
+  flex: 0 0 auto;
+
 }
 </style>

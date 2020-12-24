@@ -8,11 +8,32 @@
         <div v-if="isLoggedIn">
           <button class="btn text-lighten-10 right" style="margin-right: 10px; margin-top: 10px" type="button" @click="Logout">Выйти</button>
         </div>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <div v-if="isIndex()">
+        <ul class="left hide-on-med-and-down">
           <li><a href="#">Sass</a></li>
           <li><a href="#">Components</a></li>
           <li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript">JavaScript</a></li>
         </ul>
+        </div>
+        <div v-if="isUser()">
+          <ul class="left hide-on-med-and-down">
+            <li><router-link to="/index">На главную</router-link></li>
+            <li><router-link to="/news">Посмотреть Новости</router-link></li>
+            <li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript">JavaScript</a></li>
+          </ul>
+        </div>
+        <div v-if="isNews()">
+          <ul class="left hide-on-med-and-down">
+            <li><router-link to="/index">На главную</router-link></li>
+            <li><router-link to="/users">Посмотреть Игроков</router-link></li>
+            <li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript">JavaScript</a></li>
+          </ul>
+        </div>
+        <div v-if="isCompany()">
+          <ul class="left hide-on-med-and-down">
+            <li><router-link to="/index">На главную</router-link></li>
+          </ul>
+        </div>
       </div>
     </nav>
   </div>
@@ -44,6 +65,12 @@ export default {
     },
     isUser() {
       return this.$route.path.indexOf('/users') > -1
+    },
+    isIndex(){
+      return this.$route.path.indexOf('/index') > -1
+    },
+    isCompany(){
+      return this.$route.path.indexOf('/company') > -1
     }
   },
   mounted() {

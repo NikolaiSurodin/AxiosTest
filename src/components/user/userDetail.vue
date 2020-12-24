@@ -1,6 +1,5 @@
 <template>
   <div class="card-view">
-    <header-container/>
     <div v-if="error" class="alert">
       Мы не смогли загрузить новости, попробуйсте позже!
     </div>
@@ -18,21 +17,18 @@
         <p> Your mobile ph: => {{ this.userDetail.profile.molile }} </p>
         <button class="btn" type="button" @click="editMode= true">Редактировать профиль</button>
       </div>
-
     </div>
     <footer-container/>
   </div>
-
 </template>
 <script>
 import axios from 'axios'
-import HeaderContainer from "@/components/App/headerContainer";
 import FooterContainer from "@/components/App/footerContainer";
 import userForm from "@/components/user/userForm";
 
 export default {
   name: 'userDetail',
-  components: {FooterContainer, HeaderContainer, userForm},
+  components: {FooterContainer,userForm},
   data: () => ({
     userDetail: {},
     profile: {},

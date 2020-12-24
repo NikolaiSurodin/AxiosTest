@@ -1,6 +1,5 @@
 <template>
   <div>
-    <header-container/>
     <div class="card">
       <div class="card-content">
         <div v-if="companies.about">
@@ -42,12 +41,10 @@
 </template>
 
 <script>
-import HeaderContainer from '@/components/App/headerContainer'
 import Department from '@/servces/Department'
 
 export default {
   name: 'companyDetail',
-  components: {HeaderContainer},
   data() {
     return {
       department: Department
