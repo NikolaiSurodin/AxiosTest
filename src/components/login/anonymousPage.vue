@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import FooterContainer from "@/components/App/footerContainer";
+import FooterContainer from "@/components/containers/footerContainer";
 export default {
 name: "anonymousPage",
   components: {FooterContainer}

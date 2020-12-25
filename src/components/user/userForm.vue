@@ -10,9 +10,8 @@
     <b>You phone</b>
     <input type="text" placeholder="you phone" v-model="user.profile.molile">
     <div class="al">
-      <button type="button" class="btn" @click="saveUser">save</button>
-
-      <button type="button" class="btn" style="color: brown" @click="backUsers">Back to users</button>
+      <button type="button" class="btn" style="margin-right: 10px" @click="saveUser">save</button>
+      <button type="button" class="btn red" @click="backUsers">Back to users</button>
     </div>
   </div>
 </template>

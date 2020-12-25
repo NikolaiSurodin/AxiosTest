@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import newsDetail from "@/components/news/newsDetail";
 import login from "@/components/login/login";
+import usersList from "@/components/user/usersList";
 import users from "@/components/user/users";
 import userDetail from "@/components/user/userDetail";
 import newsList from "@/components/news/newsList";
@@ -20,7 +21,7 @@ import formEmployee from "@/components/company/employees/formEmployee";
 import NotFound from '@/components/App/404'
 import anonymousPage from "@/components/login/anonymousPage";
 import index from '@/components/login/index'
-import layout from "@/components/App/layout";
+import layout from "@/components/containers/layout";
 
 Vue.use(Router)
 export default new Router({
@@ -30,7 +31,6 @@ export default new Router({
         {
             path: '/',
             component: anonymousPage
-
         },
         {
             path: '/login',
@@ -39,12 +39,21 @@ export default new Router({
         },
         {
             path: '/users',
-            name: 'layout',
             component: layout,
             children: [
                 {
                     path: '',
-                    component: users
+                    component: users,
+                    children: [
+                        {
+                            path: '/users',
+                            name:'users',
+                            component: usersList,
+                            meta: {
+                                requiresAuth: true
+                            }
+                        }
+                    ]
                 },
                 {
                     path: '/users/:id',
@@ -71,8 +80,8 @@ export default new Router({
                     component: news,
                     children: [
                         {
-                            name: 'news',
                             path: '',
+                            name: 'news',
                             component: newsList,
                             meta: {
                                 requiresAuth: true
@@ -93,7 +102,6 @@ export default new Router({
                             component: newsDetail
                         }
                     ],
-
                 },
                 {
                     path: '/company',
@@ -196,10 +204,8 @@ export default new Router({
                             path: ':id',
                             component: taskDetail
                         }
-
                     ]
                 },
-
                 {
                     name: 'list',
                     path: '/list',

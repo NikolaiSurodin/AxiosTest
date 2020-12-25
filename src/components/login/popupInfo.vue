@@ -11,7 +11,7 @@
         </div>
         <div class="popup__footer">
           <button
-              class="submit_btn" @click="closePopup"
+              class="btn-small" @click="closePopup"
           > ok
           </button>
         </div>
@@ -45,8 +45,8 @@ export default {
 }
 
 .popup {
-  padding: 50px;
-  position: fixed;
+  padding: 80px;
+  position: center;
   top: 100px;
   width: 400px;
   background: #ffffff;
@@ -63,12 +63,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .submit_btn {
-    padding: 8px;
-    color: #ffffff;
-    background: #26ae68;
   }
 }
 </style>

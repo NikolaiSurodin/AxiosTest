@@ -8,27 +8,34 @@
           :news=newsDetail
       ></news-form>
     </div>
-    <div v-else>
-      <h1>{{ this.newsDetail.title.en }} </h1>
-      <button class="btn" type="button" @click="goBack">Back</button>
-      <p>Дата публикации новости: </p>
-      {{ this.newsDetail.publish_date }}
-      <p>Сегодня мы расскажем вам что:
-      <p><span v-html="this.newsDetail.text.en"> </span></p>
-      <button type="button" class="btn" @click="editNews=true">Редактировать</button>
-      <footer-container/>
+    <div class="row" v-else>
+      <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">
+              <p style="text-align: right">{{ this.newsDetail.publish_date }}</p>
+              <h4>news title:</h4>
+              {{ this.newsDetail.title.en }}</span><br>
+            <h4>news text</h4>
+            <p><span v-html="this.newsDetail.text.en"> </span></p>
+          </div>
+          <div class="card-action">
+            <button class="btn" type="button" style="margin-right: 10px" @click="goBack">Back</button>
+            <button type="button" class="btn" @click="editNews=true">Редактировать</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
 </template>
 <script>
 import axios from 'axios'
-import FooterContainer from "@/components/App/footerContainer";
 import NewsForm from "@/components/news/newsForm";
 
 export default {
   name: 'newsDetail',
-  components: {NewsForm, FooterContainer},
+  components: {NewsForm},
   data: () => ({
     newsDetail: {},
     error: false,

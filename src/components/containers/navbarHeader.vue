@@ -6,32 +6,46 @@
           <img src="@/assets/logo_start.png" height="60" width="80"/>
         </div>
         <div v-if="isLoggedIn">
-          <button class="btn text-lighten-10 right" style="margin-right: 10px; margin-top: 10px" type="button" @click="Logout">Выйти</button>
+          <button class="btn text-lighten-10 right" style="margin-right: 10px; margin-top: 10px" type="button"
+                  @click="Logout">Выйти
+          </button>
         </div>
         <div v-if="isIndex()">
-        <ul class="left hide-on-med-and-down">
-          <li><a href="#">Sass</a></li>
-          <li><router-link to="#">INFO</router-link></li>
-          <li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript">JavaScript</a></li>
-        </ul>
+          <ul class="left hide-on-med-and-down">
+            <li><a href="#">Sass</a></li>
+            <li>
+              <router-link to="#">INFO</router-link>
+            </li>
+            <li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript">JavaScript</a></li>
+          </ul>
         </div>
         <div v-if="isUser()">
           <ul class="left hide-on-med-and-down">
-            <li><router-link to="/index">На главную</router-link></li>
-            <li><router-link to="/news">Посмотреть Новости</router-link></li>
+            <li>
+              <router-link to="/index">На главную</router-link>
+            </li>
+            <li>
+              <router-link to="/news">Посмотреть Новости</router-link>
+            </li>
             <li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript">JavaScript</a></li>
           </ul>
         </div>
         <div v-if="isNews()">
           <ul class="left hide-on-med-and-down">
-            <li><router-link to="/index">На главную</router-link></li>
-            <li><router-link to="/users">Посмотреть Игроков</router-link></li>
+            <li>
+              <router-link to="/index">На главную</router-link>
+            </li>
+            <li>
+              <router-link to="/users">Посмотреть Игроков</router-link>
+            </li>
             <li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript">JavaScript</a></li>
           </ul>
         </div>
         <div v-if="isCompany()">
           <ul class="left hide-on-med-and-down">
-            <li><router-link to="/index">На главную</router-link></li>
+            <li>
+              <router-link to="/index">На главную</router-link>
+            </li>
           </ul>
         </div>
       </div>
@@ -48,7 +62,8 @@ export default {
     return {
       date: new Date(),
       interval: null,
-      isOpen:false
+      isOpen: false,
+      isInfoPopupVisible:false
     }
   },
   computed: {
@@ -57,7 +72,7 @@ export default {
     ])
   },
   methods: {
-    Logout() {
+   Logout() {
       this.$root.$emit('logout')
     },
     isNews() {
@@ -66,15 +81,12 @@ export default {
     isUser() {
       return this.$route.path.indexOf('/users') > -1
     },
-    isIndex(){
+    isIndex() {
       return this.$route.path.indexOf('/index') > -1
     },
-    isCompany(){
+    isCompany() {
       return this.$route.path.indexOf('/company') > -1
     }
-  },
-  mounted() {
-    this.date = new Date().toDateString()
   }
 }
 

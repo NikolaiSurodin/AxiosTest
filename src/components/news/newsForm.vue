@@ -11,9 +11,10 @@
     <div v-if="show">
       <wysiwyg v-model="news.text.en"/>
     </div>
-    <button type="button" class="btn" @click="SaveNews">Save</button>
-    <button type="button" class="btn" style="color: #ff0000" @click="GoNews">Back</button>
-
+    <div class="button" style="margin-top: 30px">
+      <button type="button" class="btn" @click="SaveNews">Save</button>
+      <button type="button" class="btn red" style="margin-left: 10px" @click="GoNews">Back</button>
+    </div>
   </div>
 </template>
 <script>

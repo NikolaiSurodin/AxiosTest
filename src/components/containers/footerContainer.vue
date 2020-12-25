@@ -1,8 +1,7 @@
 <template>
   <div class="footer">
     <div class="container">
-      © 2020
-
+      <strong>© 2020</strong>
     </div>
   </div>
 </template>
@@ -12,12 +11,4 @@ export default {
 }
 </script>
 <style>
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: slategray;
-  text-align: center;
-}
 </style>
