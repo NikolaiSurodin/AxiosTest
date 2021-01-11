@@ -26,6 +26,9 @@
         <div id="test5">Адрес: {{ companies.address }}</div>
         <div id="test6">ID: {{ companies.id }}</div>
       </div>
+      <div>
+        <button class="btn-small" @click="toCompanies">Назад</button>
+      </div>
     </div>
     <!--  чтобы не ругалось в методе, пока роут не определен -->
     <div v-if="employees">
@@ -58,6 +61,12 @@ export default {
         return this.employees.filter(el => el.department === this.department[this.$route.hash.replace('#', '')])
       }
       return this.employees
+    },
+    toCompanies() {
+      this.$router.push('/company')
+    },
+    ToTasks(){
+      this.$router.push('')
     }
   },
   computed: {
@@ -73,5 +82,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

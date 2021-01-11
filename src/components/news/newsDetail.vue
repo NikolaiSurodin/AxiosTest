@@ -71,3 +71,10 @@ export default {
   }
 }
 </script>
+<style scoped>
+.row{
+  margin-left: 350px;
+  margin-top: auto;
+  width:auto;
+}
+</style>

@@ -6,7 +6,6 @@
           <span>Popup name</span>
         </div>
         <div class="popup__content">
-
           <slot></slot>
         </div>
         <div class="popup__footer">
@@ -23,8 +22,8 @@
 <script>
 export default {
   name: "popupInfo",
-  methods:{
-    closePopup(){
+  methods: {
+    closePopup() {
       this.$emit('closePopup')
     }
   }

@@ -10,7 +10,7 @@
         <h2 style="text-align: center">Company List</h2>
         <hr>
         <p>
-          Компании в разработке:
+          <b>Компании в разработке:</b>
         </p>
         <table>
           <thead>
@@ -26,17 +26,28 @@
             <router-link :to="`company/${model.id}`">
               {{ model.name }}
             </router-link>
-
             <td>{{ model.address }}</td>
             <td>
               <div>
                 <button class="btn" style="margin-right: 30px" @click="editCompany(model.id)">Редактировать</button>
                 <button class="card-image" type="button">
                   <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany(model.id)"/></button>
+                <button class="card-image" @click="showPopup(model.id)">
+                  <img src="../../assets/eye.png" height="30" width="50"/></button>
               </div>
             </td>
+            <div>
+              <popup-info
+                  v-if="popupVisible"
+                  @closePopup="showPopup(model.id)"
+              >
+                <p>{{ model.about}}</p>
+              </popup-info>
+            </div>
           </tr>
+
           </tbody>
+
         </table>
         <div>
           <button class="btn" @click="createCompany">Добавить новую компанию</button>
@@ -47,14 +58,16 @@
 </template>
 <script>
 import FormCompany from "@/components/company/formCompany";
+import PopupInfo from "@/components/login/popupInfo";
 
 export default {
   name: 'companyList',
-  components: {FormCompany},
+  components: {PopupInfo, FormCompany},
   companyList: [],
   data() {
     return {
-      editMode: false
+      editMode: false,
+      popupVisible: false,
     }
   },
 
@@ -67,6 +80,11 @@ export default {
     },
     editCompany(id) {
       this.$router.push(`/company/${id}/edit`)
+    },
+    showPopup(id) {
+      this.popupVisible = !this.popupVisible
+      let comp = this.$store.getters.companies.filter(el => el.id === id)
+      return comp.length ? comp[0] : {}
     }
   },
   computed: {

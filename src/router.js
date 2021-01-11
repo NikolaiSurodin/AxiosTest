@@ -47,7 +47,7 @@ export default new Router({
                     children: [
                         {
                             path: '/users',
-                            name:'users',
+                            name: 'users',
                             component: usersList,
                             meta: {
                                 requiresAuth: true
@@ -111,43 +111,25 @@ export default new Router({
                             name: 'company',
                             path: '',
                             component: companyList,
-                        }
-                    ]
-                },
-                {
-                    path: '/company',
-                    component: {
-                        render(c) {
-                            return c('router-view');
-                        }
-                    },
-                    children: [
-                        {
-                            path: '',
-                            component: companyList
                         },
                         {
-                            path: '__create',
-                            component: createCompany
-                        },
-                        {
-                            path: ':id',
+                            path: '/company',
                             component: {
                                 render(c) {
-                                    return c('router-view')
+                                    return c('router-view');
                                 }
                             },
                             children: [
                                 {
                                     path: '',
-                                    component: companyDetail
+                                    component: companyList
                                 },
                                 {
-                                    path: 'edit',
-                                    component: formCompany
+                                    path: '__create',
+                                    component: createCompany
                                 },
                                 {
-                                    path: 'employees',
+                                    path: ':id',
                                     component: {
                                         render(c) {
                                             return c('router-view')
@@ -156,14 +138,14 @@ export default new Router({
                                     children: [
                                         {
                                             path: '',
-                                            component: employees
+                                            component: companyDetail
                                         },
                                         {
-                                            path: '__create',
-                                            component: createEmployee
+                                            path: 'edit',
+                                            component: formCompany
                                         },
                                         {
-                                            path: ':em_id',
+                                            path: 'employees',
                                             component: {
                                                 render(c) {
                                                     return c('router-view')
@@ -172,24 +154,40 @@ export default new Router({
                                             children: [
                                                 {
                                                     path: '',
-                                                    component: employeeDetail
+                                                    component: employees
                                                 },
                                                 {
-                                                    path: 'edit',
-                                                    component: formEmployee
+                                                    path: '__create',
+                                                    component: createEmployee
+                                                },
+                                                {
+                                                    path: ':em_id',
+                                                    component: {
+                                                        render(c) {
+                                                            return c('router-view')
+                                                        }
+                                                    },
+                                                    children: [
+                                                        {
+                                                            path: '',
+                                                            component: employeeDetail
+                                                        },
+                                                        {
+                                                            path: 'edit',
+                                                            component: formEmployee
+                                                        }
+                                                    ]
                                                 }
                                             ]
-                                        }
+                                        },
                                     ]
-                                },
+                                }
                             ]
-                        }
+                        },
                     ]
                 },
-
-
                 {
-                    path: '/task',
+                    path: '/company/task',
                     component: {
                         render(c) {
                             return c('router-view')
