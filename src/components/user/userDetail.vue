@@ -8,16 +8,6 @@
           :user="userDetail"
       ></user-form>
     </div>
-<!--    <div v-else>-->
-<!--      <div v-if="userDetail.hasOwnProperty('id')">-->
-<!--        User: <h3 class="user_detail"> {{ this.userDetail.username }}</h3>-->
-<!--        <p> email: => {{ this.userDetail.email }} </p>-->
-<!--        <p> First Name: => {{ this.userDetail.profile.first_name }} </p>-->
-<!--        <p> Last Name: => {{ this.userDetail.profile.last_name }} </p>-->
-<!--        <p> Your mobile ph: => {{ this.userDetail.profile.molile }} </p>-->
-<!--        <button class="btn" type="button" @click="editMode= true">Редактировать профиль</button>-->
-<!--      </div>-->
-<!--    </div>-->
     <div class="row" v-else>
       <div v-if="userDetail.hasOwnProperty('id')">
       <div class="col s12 m6">

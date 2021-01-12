@@ -32,23 +32,21 @@
                 <button class="btn" style="margin-right: 30px" @click="editCompany(model.id)">Редактировать</button>
                 <button class="card-image" type="button">
                   <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany(model.id)"/></button>
-                <button class="card-image" @click="showPopup(model.id)">
+                <button class="card-image" @click="showPopup">
                   <img src="../../assets/eye.png" height="30" width="50"/></button>
               </div>
             </td>
-            <div>
-              <popup-info
-                  v-if="popupVisible"
-                  @closePopup="showPopup(model.id)"
-              >
-                <p>{{ model.about}}</p>
-              </popup-info>
-            </div>
           </tr>
-
           </tbody>
-
         </table>
+        <div>
+          <popup-info
+              v-if="popupVisible"
+              @closePopup="showPopup()"
+          >
+            <p>{{ comp.about }}</p>
+          </popup-info>
+        </div>
         <div>
           <button class="btn" @click="createCompany">Добавить новую компанию</button>
         </div>
@@ -68,6 +66,8 @@ export default {
     return {
       editMode: false,
       popupVisible: false,
+      comp:null
+
     }
   },
 
@@ -83,8 +83,7 @@ export default {
     },
     showPopup(id) {
       this.popupVisible = !this.popupVisible
-      let comp = this.$store.getters.companies.filter(el => el.id === id)
-      return comp.length ? comp[0] : {}
+      this.comp = this.$store.getters.companies.filter(el => el.id === id)
     }
   },
   computed: {

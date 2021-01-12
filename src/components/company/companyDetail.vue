@@ -40,6 +40,7 @@
         </li>
       </ul>
     </div>
+
   </div>
 </template>
 
@@ -65,7 +66,7 @@ export default {
     toCompanies() {
       this.$router.push('/company')
     },
-    ToTasks(){
+    ToTasks() {
       this.$router.push('')
     }
   },
@@ -82,4 +83,9 @@ export default {
 </script>
 
 <style scoped>
+.chart{
+  position: center;
+  max-height: 500px;
+  max-width: 500px;
+}
 </style>

@@ -21,6 +21,7 @@
           <td>{{ em.position }}</td>
           <td>
             <button class="btn" @click="EditEmployee(em.id)">Редактировать</button>
+            <button class="btn small" @click="showSalaryTable">Рассчитать зарплату</button>
             <button class="card-image" type="button" @click="DeleteEmployee(em.id)">
               <img src="@/assets/trash.png" height="30" width="30"/></button>
           </td>
@@ -28,18 +29,30 @@
         </tbody>
       </table>
       <p>{{ 'Общая численность работников: ' + employees.length }}</p>
-      <button class="btn green" style="margin-right: 10px" type="button" @click="AddEmployee">добавить сотрудника</button>
+      <button class="btn green" style="margin-right: 10px" type="button" @click="AddEmployee">добавить сотрудника
+      </button>
       <router-link :to="`/company/${$route.params['id']}`" class="btn-small ">Вернуться к компании</router-link>
     </div>
+    <salary-popup
+    v-if="showSalary"
+    @closePopup="showSalaryTable"
+    >
+      <p>Имя сотрудника
 
+      </p>
+    </salary-popup>
   </div>
 </template>
 <script>
 
+import SalaryPopup from "@/components/company/employees/salaryPopup";
 export default {
   name: 'employees',
+  components: {SalaryPopup},
   data() {
-    return {}
+    return {
+      showSalary:false
+    }
   },
   methods: {
     AddEmployee() {
@@ -49,8 +62,11 @@ export default {
     DeleteEmployee(id) {
       this.$store.dispatch('deleteEmployee', id)
     },
-    EditEmployee(em_id){
+    EditEmployee(em_id) {
       this.$router.push(`/company/${this.$route.params['id']}/employees/${em_id}/edit`)
+    },
+    showSalaryTable(){
+      this.showSalary = !this.showSalary
     }
 
   },
