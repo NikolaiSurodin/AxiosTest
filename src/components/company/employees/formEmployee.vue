@@ -2,12 +2,21 @@
   <div>
     <form>
       <h3>Редактировать данные сотрудника:</h3>
+      <div class="card-title">
+        <p>
+          Обновите личные данные сотрудника.<br>
+          Заполните все необходимые поля и нажмите "обновить"
+
+        </p>
+      </div>
       <div class="row">
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <input class="card-title" placeholder="Имя" v-model="employees.name" >
+              <input class="card-title" placeholder="Фамилия" v-model="employees.SurName" >
               <input type="number" class="card-title" placeholder="Возраст" v-model="employees.age">
+              <input type="text" class="card-title" placeholder="Адрес проживания" v-model="employees.address">
               <input type="text" class="card-title" placeholder="Должность" v-model="employees.position">
             </div>
             <form @submit.prevent="UpDateEmployee">
@@ -56,5 +65,7 @@ export default {
 </script>
 
 <style scoped>
-
+.row{
+  position: center;
+}
 </style>

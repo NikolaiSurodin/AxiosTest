@@ -32,7 +32,7 @@
                 <button class="btn" style="margin-right: 30px" @click="editCompany(model.id)">Редактировать</button>
                 <button class="card-image" type="button">
                   <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany(model.id)"/></button>
-                <button class="card-image" @click="showPopup">
+                <button class="card-image" @click="showPopup(model.id)">
                   <img src="../../assets/eye.png" height="30" width="50"/></button>
               </div>
             </td>
@@ -42,9 +42,9 @@
         <div>
           <popup-info
               v-if="popupVisible"
-              @closePopup="showPopup()"
+              @closePopup="showPopup"
           >
-            <p>{{ comp.about }}</p>
+            <p>{{ comp[0].about }}</p>
           </popup-info>
         </div>
         <div>

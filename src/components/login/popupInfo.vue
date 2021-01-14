@@ -3,7 +3,7 @@
     <div class="popup_wrapper">
       <div class='popup'>
         <div class="popup__header">
-          <span>Popup name</span>
+          <span>Краткий обзор</span>
         </div>
         <div class="popup__content">
           <slot></slot>

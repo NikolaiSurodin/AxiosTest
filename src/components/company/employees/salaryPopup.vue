@@ -2,22 +2,30 @@
   <div>
     <div class="popup_wrapper">
       <div class='popup'>
+        <div class="header-content">
+          <b v-if="!salaryModel.salary">Введите данные для посчета</b>
+          <b v-else> Зарплата: {{ salaryModel.salary }}</b>
+        </div>
         <div class="popup__header">
+
           <slot></slot>
         </div>
         <div class="popup__content">
+
           <div>
-            <input class="input" type="number" placeholder="Кол-во дней" v-model="days">
-            <input class="input" type="number" placeholder="Кол-во часов" v-model="hours">
-            <input class="input" type="number" placeholder="Ставка" v-model="rate">
-            <b v-if="!salary">Введите данные для посчета</b>
-            <b v-else> Зарплата: {{salary}}</b>
+            <input class="input" type="number" placeholder="Кол-во дней" v-model="salaryModel.days">
+            <input class="input" type="number" placeholder="Кол-во часов" v-model="salaryModel.hours">
+            <input class="input" type="number" placeholder="Ставка" v-model="salaryModel.rate">
           </div>
         </div>
         <div class="popup__footer">
           <button
               class="btn-small" @click="salaryOk"
           > Рассчитать
+          </button>
+          <button
+              class="btn" @click="saveSalary"
+          > Сохранить
           </button>
           <button
               class="btn red" @click="closePopup"
@@ -32,23 +40,31 @@
 <script>
 export default {
   name: "SalaryPopup",
-  props:['emp'],
+  props: ['emp'],
   data() {
     return {
-      hourPrice:800,
-      days: null,
-      hours: null,
-      rate: null,
-      salary: null
+      salaryModel: {
+        hourPrice: 200,
+        days: null,
+        hours: null,
+        rate: null,
+        salary: null
+      }
+
     }
   },
   methods: {
     closePopup() {
       this.$emit('closePopup')
     },
-    salaryOk(){
+    salaryOk() {
       //this.$emit('salaryOk')
-      this.salary = this.days * this.hours * this.hourPrice * this.rate
+      this.salaryModel.salary = this.salaryModel.days * this.salaryModel.hours * this.salaryModel.hourPrice * this.salaryModel.rate
+    },
+    saveSalary() {
+      this.$emit('saveSalary')
+      this.$store.dispatch('createSalary', this.salaryModel)
+      console.log(this.$store.getters.salary)
     }
   }
 }
@@ -93,6 +109,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.header-content {
+  text-align: center;
 }
 
 </style>

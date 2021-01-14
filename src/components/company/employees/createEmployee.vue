@@ -9,7 +9,10 @@
               <input class="card-title" placeholder="Имя"
                      :class="$v.employee.$error ? 'is-invalid' : '' "
                      v-model.trim="employee.name">
-              <p class="invalid" v-if="$v.employee.$dirty && !$v.employee.name.required">Поле обязательно!</p>
+              <p style="color: red" class="invalid" v-if="$v.employee.$dirty && !$v.employee.name.required">Поле обязательно!</p>
+
+              <input type="text" class="card-title" placeholder="Фамилия" v-model="employee.SurName">
+              <p class="invalid" v-if="$v.employee.$dirty && !$v.employee.SurName.required">Поле обязательно!</p>
 
               <input type="number" class="card-title" placeholder="Возраст"
                      :class="$v.employee.$error ? 'is-invalid' : '' "
@@ -18,6 +21,9 @@
               <p class="invalid" v-if="$v.employee.$dirty && !$v.employee.between && !$v.employee.age.required">
                 Возраст от {{ $v.employee.age.$params.between.min }} до {{ $v.employee.age.$params.between.max }}
               </p>
+
+              <input class="card-title" type="text" placeholder="Адрес проживания" v-model="employee.address">
+              <p class="invalid" v-if="$v.employee.$dirty && !$v.employee.required">Укажите адрес</p>
 
               <input type="text" class="card-title" placeholder="Должность" v-model="employee.position">
             </div>
@@ -44,7 +50,7 @@
 
 <script>
 import departments from "@/servces/Department";
-import {required, minLength, between} from 'vuelidate/lib/validators'
+import {required, between} from 'vuelidate/lib/validators'
 import {validationMixin} from "vuelidate";
 
 export default {
@@ -55,6 +61,9 @@ export default {
       employee: {
         name: '',
         age: '',
+        gender:'',
+        SurName:'',
+        address:'',
         position: '',
         type: '',
         company_id: '',
@@ -70,7 +79,7 @@ export default {
         required,
         between: between(18, 60)
       },
-      position: {minLength: minLength(10)}
+      SurName: {required}
     }
   },
   methods: {

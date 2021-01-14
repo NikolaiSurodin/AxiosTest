@@ -66,9 +66,6 @@ export default {
     toCompanies() {
       this.$router.push('/company')
     },
-    ToTasks() {
-      this.$router.push('')
-    }
   },
   computed: {
     companies() {
@@ -83,9 +80,5 @@ export default {
 </script>
 
 <style scoped>
-.chart{
-  position: center;
-  max-height: 500px;
-  max-width: 500px;
-}
+
 </style>

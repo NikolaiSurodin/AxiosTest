@@ -1,13 +1,14 @@
 <template>
   <div>
     <div class="container">
+      <h3>Общий список</h3>
       <table class="input-field col s6">
         <thead>
         <tr>
           <th>Имя</th>
           <th>Возраст</th>
           <th>Должность</th>
-          <th></th>
+          <th>Зарплата</th>
         </tr>
         </thead>
         <tbody>
@@ -19,9 +20,10 @@
           </router-link>
           <td>{{ em.age }}</td>
           <td>{{ em.position }}</td>
+          <td></td>
           <td>
             <button class="btn" @click="EditEmployee(em.id)">Редактировать</button>
-            <button class="btn small" @click="showSalaryTable">Рассчитать зарплату</button>
+            <button class="btn small" @click="showSalaryTable(em.id)">Рассчитать зарплату</button>
             <button class="card-image" type="button" @click="DeleteEmployee(em.id)">
               <img src="@/assets/trash.png" height="30" width="30"/></button>
           </td>
@@ -36,8 +38,9 @@
     <salary-popup
     v-if="showSalary"
     @closePopup="showSalaryTable"
+    @saveSalary="saveSalary"
     >
-      <p>Имя сотрудника
+      <p>Рассчитать зарплату для сотрудника: {{employee[0].name}}
 
       </p>
     </salary-popup>
@@ -51,7 +54,8 @@ export default {
   components: {SalaryPopup},
   data() {
     return {
-      showSalary:false
+      showSalary:false,
+      employee:null
     }
   },
   methods: {
@@ -65,10 +69,17 @@ export default {
     EditEmployee(em_id) {
       this.$router.push(`/company/${this.$route.params['id']}/employees/${em_id}/edit`)
     },
-    showSalaryTable(){
+    showSalaryTable(id){
       this.showSalary = !this.showSalary
-    }
+      this.employee =  this.$store.getters.employees.filter(el => el.id === id)
+    },
+    saveSalary(id) {
+      this.employee =  this.$store.getters.employees.filter(el => el.id === id)
+      this.$store.dispatch('createSalary', id)
+      this.showSalary = !this.showSalary
+      console.log('это из employees')
 
+    }
   },
   computed: {
     employees() {

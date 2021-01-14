@@ -46,6 +46,9 @@
             <li>
               <router-link to="/index">На главную</router-link>
             </li>
+            <li>
+              <router-link to="/company">Компании в разработке</router-link>
+            </li>
           </ul>
         </div>
       </div>

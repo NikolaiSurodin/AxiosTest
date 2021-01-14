@@ -6,6 +6,7 @@ import axios from 'axios';
 import wysiwyg from "vue-wysiwyg";
 import Vuelidate from "vuelidate";
 import 'materialize-css/dist/js/materialize.min'
+import 'material-design-icons'
 
 Vue.use(wysiwyg, {});
 Vue.use(Vuelidate)

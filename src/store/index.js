@@ -212,12 +212,34 @@ const moduleTasks = {
         },
         taskById: s => id => s.tasks.find(t => t.id === id)
     }
-}
+};
+    const moduleSalary = {
+        state:{
+            salary: JSON.parse(localStorage.getItem('salary')) || []
+        },
+        actions:{
+            createSalary({commit}, salary){
+                commit('CREATE_SALARY', salary)
+            }
+        },
+        mutations:{
+            CREATE_SALARY(state, salary){
+                state.salary.push(salary)
+                localStorage.setItem('salary', JSON.stringify(state.salary))
+            }
+        },
+        getters:{
+            salary(state) {
+                return state.salary
+            }
+        }
+    }
 export const store = new Vuex.Store({
     modules: {
         a: moduleAuth,
         b: moduleCompany,
         c: moduleDevelopers,
-        d: moduleTasks
+        d: moduleTasks,
+        f: moduleSalary
     }
 });
