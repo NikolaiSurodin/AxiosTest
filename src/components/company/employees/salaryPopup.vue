@@ -3,15 +3,13 @@
     <div class="popup_wrapper">
       <div class='popup'>
         <div class="header-content">
-          <b v-if="!salaryModel.salary">Введите данные для посчета</b>
+          <b v-if="!salaryModel.salary">Введите данные для посчета и нажмите "Рассчитать"</b>
           <b v-else> Зарплата: {{ salaryModel.salary }}</b>
         </div>
         <div class="popup__header">
-
           <slot></slot>
         </div>
         <div class="popup__content">
-
           <div>
             <input class="input" type="number" placeholder="Кол-во дней" v-model="salaryModel.days">
             <input class="input" type="number" placeholder="Кол-во часов" v-model="salaryModel.hours">
@@ -24,7 +22,7 @@
           > Рассчитать
           </button>
           <button
-              class="btn" @click="saveSalary"
+              class="btn" @click="saveSalary" :disabled="!valid"
           > Сохранить
           </button>
           <button
@@ -38,9 +36,9 @@
 </template>
 
 <script>
+
 export default {
   name: "SalaryPopup",
-  props: ['emp'],
   data() {
     return {
       salaryModel: {
@@ -50,7 +48,6 @@ export default {
         rate: null,
         salary: null
       }
-
     }
   },
   methods: {
@@ -62,9 +59,14 @@ export default {
       this.salaryModel.salary = this.salaryModel.days * this.salaryModel.hours * this.salaryModel.hourPrice * this.salaryModel.rate
     },
     saveSalary() {
-      this.$emit('saveSalary')
-      this.$store.dispatch('createSalary', this.salaryModel)
-      console.log(this.$store.getters.salary)
+        this.$store.dispatch('createSalary', this.salaryModel.salary)
+        this.$emit('saveSalary')
+        console.log(this.$store.getters.salary)
+    }
+  },
+  computed:{
+    valid(){
+      return this.salaryModel.days && this.salaryModel.hours && this.salaryModel.rate
     }
   }
 }

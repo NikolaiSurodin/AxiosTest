@@ -36,11 +36,11 @@
       <router-link :to="`/company/${$route.params['id']}`" class="btn-small ">Вернуться к компании</router-link>
     </div>
     <salary-popup
-    v-if="showSalary"
-    @closePopup="showSalaryTable"
-    @saveSalary="saveSalary"
+        v-if="showSalary"
+        @closePopup="showSalaryTable"
+        @saveSalary="saveSalary()"
     >
-      <p>Рассчитать зарплату для сотрудника: {{employee[0].name}}
+      <p>Рассчитать зарплату для сотрудника: {{ employee[0].name }}
 
       </p>
     </salary-popup>
@@ -49,13 +49,15 @@
 <script>
 
 import SalaryPopup from "@/components/company/employees/salaryPopup";
+
 export default {
   name: 'employees',
   components: {SalaryPopup},
   data() {
     return {
-      showSalary:false,
-      employee:null
+      showSalary: false,
+      employee: null,
+      salary: null,
     }
   },
   methods: {
@@ -69,16 +71,14 @@ export default {
     EditEmployee(em_id) {
       this.$router.push(`/company/${this.$route.params['id']}/employees/${em_id}/edit`)
     },
-    showSalaryTable(id){
+    showSalaryTable(id) {
       this.showSalary = !this.showSalary
-      this.employee =  this.$store.getters.employees.filter(el => el.id === id)
+      this.employee = this.$store.getters.employees.filter(el => el.id === id)
     },
     saveSalary(id) {
-      this.employee =  this.$store.getters.employees.filter(el => el.id === id)
       this.$store.dispatch('createSalary', id)
       this.showSalary = !this.showSalary
       console.log('это из employees')
-
     }
   },
   computed: {

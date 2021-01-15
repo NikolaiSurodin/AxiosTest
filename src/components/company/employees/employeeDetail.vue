@@ -15,7 +15,7 @@
       <div id="test6">Возраст: {{employees[0].age}}</div>
       <div id="test7">Адрес регистрации: {{employees[0].address}}</div>
       <div id="test8">Должность: {{employees[0].position}}</div>
-      <div id="test9">Зарплата:{{employees[0].salaryModel}}</div>
+      <div id="test9">Зарплата:{{employees[0].salary}}</div>
     </div>
     <div class="card-tabs">
       <ul class="tabs tabs-fixed-width">

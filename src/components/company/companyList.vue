@@ -58,6 +58,7 @@
 import FormCompany from "@/components/company/formCompany";
 import PopupInfo from "@/components/login/popupInfo";
 
+
 export default {
   name: 'companyList',
   components: {PopupInfo, FormCompany},
