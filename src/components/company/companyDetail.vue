@@ -59,7 +59,9 @@ export default {
   extends: Pie,
   data() {
     return {
-      department: Department
+      department: Department,
+      label:[],
+      chartData:[]
     }
   },
   methods: {
@@ -74,13 +76,12 @@ export default {
     toCompanies() {
       this.$router.push('/company')
     },
-    empChart() {
-      if (this.$route.hash !== '') {
-        return  this.employees.filter(el => el.department === this.department[this.$route.hash.replace('#', '')])
+    empChartLabel() {
+      for (let dep in this.department) {
+        this.label.push(dep)
+        this.chartData.push(this.employees.length)
       }
-      console.log(this.employees)
-      return this.employees
-    }
+    },
   },
   computed: {
     companies() {
@@ -91,13 +92,16 @@ export default {
       return this.$store.getters.employees.filter(el => el.company_id === this.$route.params['id'])
     },
   },
+  beforeMount() {
+    this.empChartLabel()
+  },
   mounted() {
-    this.empChart()
+    console.log(this.employeeOnDepartments().length)
     this.renderChart({
-      labels: Object.values(this.department),
+      labels: this.label,
       datasets: [{
         label: 'Количесво сотрудников отдела',
-        data: this.empChart(),
+        data:this.chartData,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -117,7 +121,6 @@ export default {
         borderWidth: 1
       }]
     })
-
 
 
   }

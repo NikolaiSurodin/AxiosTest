@@ -1,8 +1,8 @@
 const departments = {
-    be: 'Backend',
-    fe: 'FrontEnd',
-    des: 'Designer',
-    tes: 'Tester',
-    bk: 'Bookkeeping'
+    Backend: 'Backend',
+    FrontEnd: 'FrontEnd',
+    Designer: 'Designer',
+    Tester: 'Tester',
+    Bookkeeping: 'Bookkeeping'
 }
 export default departments

@@ -7,9 +7,11 @@ import wysiwyg from "vue-wysiwyg";
 import Vuelidate from "vuelidate";
 import 'materialize-css/dist/js/materialize.min'
 import 'material-design-icons'
+import message from "@/servces/message";
 
 Vue.use(wysiwyg, {});
 Vue.use(Vuelidate)
+Vue.use(message)
 
 
 Vue.config.productionTip = false

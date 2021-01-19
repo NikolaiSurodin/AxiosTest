@@ -70,6 +70,7 @@ export default {
       this.$v.model.$touch()
       if (!this.$v.model.$error) {
         this.$store.dispatch('createCompany', this.model)
+        this.$message('Компания добавлена!')
         this.$router.push('/company')
       }
     },

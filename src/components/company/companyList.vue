@@ -68,16 +68,15 @@ export default {
       editMode: false,
       popupVisible: false,
       comp:null
-
     }
   },
-
   methods: {
     createCompany() {
       this.$router.push('/company/__create')
     },
     DeleteCompany(id) {
       this.$store.dispatch('deleteCompany', id)
+      this.$message('Компания удалена!')
     },
     editCompany(id) {
       this.$router.push(`/company/${id}/edit`)
