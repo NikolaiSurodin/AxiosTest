@@ -39,6 +39,7 @@
 
 export default {
   name: "SalaryPopup",
+  props: ['id'],
   data() {
     return {
       salaryModel: {
@@ -46,7 +47,7 @@ export default {
         days: null,
         hours: null,
         rate: null,
-        salary: null
+        salary: null,
       }
     }
   },
@@ -57,15 +58,16 @@ export default {
     salaryOk() {
       //this.$emit('salaryOk')
       this.salaryModel.salary = this.salaryModel.days * this.salaryModel.hours * this.salaryModel.hourPrice * this.salaryModel.rate
+
     },
     saveSalary() {
-        this.$store.dispatch('createSalary', this.salaryModel.salary)
-        this.$emit('saveSalary')
-        console.log(this.$store.getters.salary)
+      this.$emit('saveSalary')
+      this.salaryModel.salary = this.$store.getters.salary
+      console.log(this.salaryModel.salary)
     }
   },
-  computed:{
-    valid(){
+  computed: {
+    valid() {
       return this.salaryModel.days && this.salaryModel.hours && this.salaryModel.rate
     }
   }

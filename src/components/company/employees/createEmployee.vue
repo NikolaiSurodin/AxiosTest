@@ -88,9 +88,9 @@ export default {
       if (!this.$v.employee.$error) {
         this.employee.company_id = this.$route.params['id']
         this.$store.dispatch('createEmployee', this.employee)
+        this.$message('Новый сотрудник добавлен!')
         this.$router.push(`/company/${this.$route.params['id']}/employees`)
       }
-
     }
   }
 }

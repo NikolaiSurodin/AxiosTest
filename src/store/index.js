@@ -161,85 +161,34 @@ const moduleDevelopers = {
             return state.employees
         }
     }
-}
-const moduleTasks = {
+};
+const moduleSalary = {
     state: {
-        tasks: JSON.parse(localStorage.getItem('tasks')) || [].map(task => {
-            if (new Date(task.date) < new Date()){
-                task.status = 'Задача просрочена'
-            }
-        })
+        salary: JSON.parse(localStorage.getItem('salary')) || []
     },
     actions: {
-        createTask({commit}, task) {
-            commit('CREATE_TASK', task)
-        },
-        upDateTask({commit}, task) {
-            commit('UP_DATE_TASK', task)
-        },
-        completeTask({commit}, id){
-            commit('COMPLETE_TASK', id)
+        createSalary({commit}, salary) {
+            commit('CREATE_SALARY', salary)
         }
-
     },
     mutations: {
-        CREATE_TASK(state, task) {
-            state.tasks.push(task)
-            localStorage.setItem('tasks', JSON.stringify(state.tasks))
-        },
-        UP_DATE_TASK(state, {id, description, date}){
-            const tasks = state.tasks.concat()
-
-            const idx = tasks.findIndex(t => t.id === id)
-            const task = tasks[idx]
-            const status = new Date(date) > new Date() ? 'В процессе..' : 'Задача просрочена!'
-            tasks[idx] = {...task, date, description, status}
-            state.tasks = tasks
-            localStorage.setItem('task', JSON.stringify(state.tasks))
-
-        },
-        COMPLETE_TASK(state, id){
-
-            const idx = state.tasks.findIndex(t => t.id === id)
-            state.tasks[idx].status = 'Задача выполнена'
-            localStorage.setItem('task', JSON.stringify(state.tasks))
+        CREATE_SALARY(state, salary) {
+            state.salary.push(salary)
+            localStorage.setItem('salary', JSON.stringify(state.salary))
         }
-
     },
     getters: {
-        tasks(state) {
-            return state.tasks
-        },
-        taskById: s => id => s.tasks.find(t => t.id === id)
-    }
-};
-    const moduleSalary = {
-        state:{
-            salary: JSON.parse(localStorage.getItem('salary')) || []
-        },
-        actions:{
-            createSalary({commit}, salary){
-                commit('CREATE_SALARY', salary)
-            }
-        },
-        mutations:{
-            CREATE_SALARY(state, salary){
-                state.salary.push(salary)
-                localStorage.setItem('salary', JSON.stringify(state.salary))
-            }
-        },
-        getters:{
-            salary(state) {
-                return state.salary
-            }
+        salary(state) {
+            return state.salary
         }
     }
+};
+
 export const store = new Vuex.Store({
     modules: {
         a: moduleAuth,
         b: moduleCompany,
         c: moduleDevelopers,
-        d: moduleTasks,
-        f: moduleSalary
+        d: moduleSalary
     }
 });

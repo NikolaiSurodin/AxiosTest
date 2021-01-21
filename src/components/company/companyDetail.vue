@@ -60,8 +60,9 @@ export default {
   data() {
     return {
       department: Department,
-      label:[],
-      chartData:[]
+      label: [],
+      chartData: [],
+      currency:this.currency
     }
   },
   methods: {
@@ -79,7 +80,7 @@ export default {
     empChartLabel() {
       for (let dep in this.department) {
         this.label.push(dep)
-        this.chartData.push(this.employees.length)
+        this.chartData.push(this.employees.filter(el => el.department === dep).length)
       }
     },
   },
@@ -101,7 +102,7 @@ export default {
       labels: this.label,
       datasets: [{
         label: 'Количесво сотрудников отдела',
-        data:this.chartData,
+        data: this.chartData,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -121,8 +122,6 @@ export default {
         borderWidth: 1
       }]
     })
-
-
   }
 }
 </script>

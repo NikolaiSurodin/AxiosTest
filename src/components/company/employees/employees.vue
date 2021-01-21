@@ -38,7 +38,8 @@
     <salary-popup
         v-if="showSalary"
         @closePopup="showSalaryTable"
-        @saveSalary="saveSalary()"
+        @saveSalary="saveSalary"
+        :id="this.employee.id"
     >
       <p>Рассчитать зарплату для сотрудника: {{ employee[0].name }}
 
@@ -57,7 +58,7 @@ export default {
     return {
       showSalary: false,
       employee: null,
-      salary: null,
+      salary:null
     }
   },
   methods: {
@@ -67,18 +68,19 @@ export default {
     },
     DeleteEmployee(id) {
       this.$store.dispatch('deleteEmployee', id)
+      this.$message('Сотрудник удален!')
     },
     EditEmployee(em_id) {
       this.$router.push(`/company/${this.$route.params['id']}/employees/${em_id}/edit`)
     },
-    showSalaryTable(id) {
+    showSalaryTable(em_id) {
       this.showSalary = !this.showSalary
-      this.employee = this.$store.getters.employees.filter(el => el.id === id)
+      this.employee = this.$store.getters.employees.filter(el => el.id === em_id)
+      return this.employee.length ? this.employee[0] : null
     },
-    saveSalary(id) {
-      this.$store.dispatch('createSalary', id)
+    saveSalary(em_id) {
+      this.$store.dispatch('createSalary', em_id)
       this.showSalary = !this.showSalary
-      console.log('это из employees')
     }
   },
   computed: {
