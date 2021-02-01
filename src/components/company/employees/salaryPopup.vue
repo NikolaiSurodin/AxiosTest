@@ -56,13 +56,11 @@ export default {
       this.$emit('closePopup')
     },
     salaryOk() {
-      //this.$emit('salaryOk')
       this.salaryModel.salary = this.salaryModel.days * this.salaryModel.hours * this.salaryModel.hourPrice * this.salaryModel.rate
-
     },
-    saveSalary() {
-      this.$emit('saveSalary')
-      this.salaryModel.salary = this.$store.getters.salary
+    saveSalary(id) {
+      this.salaryOk()
+      this.$emit('saveSalary',id)
       console.log(this.salaryModel.salary)
     }
   },

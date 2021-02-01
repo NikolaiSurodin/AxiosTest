@@ -182,13 +182,14 @@ const moduleSalary = {
             return state.salary
         }
     }
-};
+}
 
 export const store = new Vuex.Store({
     modules: {
         a: moduleAuth,
         b: moduleCompany,
         c: moduleDevelopers,
-        d: moduleSalary
+        d: moduleSalary,
+
     }
 });

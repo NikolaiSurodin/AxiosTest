@@ -97,7 +97,6 @@ export default {
     this.empChartLabel()
   },
   mounted() {
-    console.log(this.employeeOnDepartments().length)
     this.renderChart({
       labels: this.label,
       datasets: [{

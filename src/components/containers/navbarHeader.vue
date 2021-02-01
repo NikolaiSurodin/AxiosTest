@@ -66,7 +66,7 @@ export default {
       date: new Date(),
       interval: null,
       isOpen: false,
-      isInfoPopupVisible:false
+      isInfoPopupVisible: false
     }
   },
   computed: {
@@ -75,7 +75,7 @@ export default {
     ])
   },
   methods: {
-   Logout() {
+    Logout() {
       this.$root.$emit('logout')
     },
     isNews() {

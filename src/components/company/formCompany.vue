@@ -16,10 +16,10 @@
           <textarea id="address" class="area" v-model="company.address"></textarea>
           <label for="Address">Address</label>
         </div>
-      <div class="card-action">
-        <button type="button" class="btn" @click="upData">Обновить информацию</button>
-        <router-link to="/company" class="right">Отмена</router-link>
-      </div>
+        <div class="card-action">
+          <button type="button" class="btn" @click="upData">Обновить информацию</button>
+          <router-link to="/company" class="right">Отмена</router-link>
+        </div>
       </div>
     </form>
   </div>
@@ -28,25 +28,24 @@
 <script>
 import {validationMixin} from 'vuelidate'
 import {required} from 'vuelidate/lib/validators'
+
 export default {
 
-  mixins:[validationMixin],
+  mixins: [validationMixin],
   name: "formCompany",
-  data(){
-    return{
-
-    }
+  data() {
+    return {}
   },
-  methods:{
-    upData(){
+  methods: {
+    upData() {
       this.$store.dispatch('upDateCompany')
       this.$router.push('/company')
     }
   },
-  validations:{
-      name:{required}
+  validations: {
+    name: {required}
   },
-  computed:{
+  computed: {
     company() {
       let company = this.$store.getters.companies.filter(el => el.id === this.$route.params['id'])
       return company.length ? company[0] : {}
@@ -65,34 +64,41 @@ export default {
   border: 1px solid #eee;
   margin-bottom: 1rem;
 }
+
 .form h1 {
   margin: 0;
   margin-bottom: 1rem;
 }
+
 .input {
   margin-bottom: 1rem;
 }
+
 .input input {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 5px 8px;
   width: 400px;
 }
+
 .btn {
   width: 400px;
   display: flex;
   justify-content: space-around;
 }
-.area{
+
+.area {
   height: 80px;
   width: 200px;
 }
-.form-table{
+
+.form-table {
   height: 500px;
   width: 500px;
 }
-.area{
-  width:500px ;
+
+.area {
+  width: 500px;
   height: 150px;
 }
 </style>

@@ -1,5 +1,6 @@
 <template lang="html">
   <div>
+
     <div class="container">
       <div v-if="editMode">
         <form-company
@@ -7,11 +8,23 @@
         />
       </div>
       <div v-else>
-        <h2 style="text-align: center">Company List</h2>
+        <h2 style="text-align: center">Ваши компании</h2>
+        <div>
+          <button class="btn" @click="currency">{{ coursesVisible ? 'Скрыть' : 'Показать курс' }}
+            <i class="material-icons">attach_money</i>
+          </button>
+
+          <div class="right" v-if="coursesVisible"
+          >
+            <ul v-for="(r, index) in rates"
+                :key="index">
+              <li>
+                {{ index }}: {{ r }}
+              </li>
+            </ul>
+          </div>
+        </div>
         <hr>
-        <p>
-          <b>Компании в разработке:</b>
-        </p>
         <table>
           <thead>
           <tr>
@@ -48,7 +61,9 @@
           </popup-info>
         </div>
         <div>
-          <button class="btn" @click="createCompany">Добавить новую компанию</button>
+          <button class="btn" @click="createCompany">
+            Добавить новую компанию
+          </button>
         </div>
       </div>
     </div>
@@ -67,7 +82,10 @@ export default {
     return {
       editMode: false,
       popupVisible: false,
-      comp:null
+      coursesVisible: false,
+      comp: null,
+      res: '',
+      rates: ''
     }
   },
   methods: {
@@ -84,12 +102,20 @@ export default {
     showPopup(id) {
       this.popupVisible = !this.popupVisible
       this.comp = this.$store.getters.companies.filter(el => el.id === id)
+    },
+    async currency() {
+      this.coursesVisible = !this.coursesVisible
+      let url = 'http://data.fixer.io/api/latest?access_key=61737834c3b1ec51c81ff69e67511336&symbols=USD,EUR,RUB'
+      let response = await fetch(url)
+      this.res = await response.json()
+      this.rates = this.res.rates
+      console.log(this.res)
     }
   },
   computed: {
     companies() {
       return this.$store.getters.companies
-    }
+    },
   }
 }
 </script>
