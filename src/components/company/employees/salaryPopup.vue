@@ -39,7 +39,7 @@
 
 export default {
   name: "SalaryPopup",
-  props: ['id'],
+  props: ['id', 'salary'],
   data() {
     return {
       salaryModel: {
@@ -58,9 +58,8 @@ export default {
     salaryOk() {
       this.salaryModel.salary = this.salaryModel.days * this.salaryModel.hours * this.salaryModel.hourPrice * this.salaryModel.rate
     },
-    saveSalary(id) {
-      this.salaryOk()
-      this.$emit('saveSalary',id)
+    saveSalary() {
+      this.$emit('saveSalary', this.salary)
       console.log(this.salaryModel.salary)
     }
   },

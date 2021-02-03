@@ -1,32 +1,33 @@
 <template>
   <div id="app">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
 <script>
 import {store} from "@/store";
+
 export default {
   name: 'App',
   // на mounted поздно, т.к. роутер вью уже был тоже смонтирован, что приводило к ошибке, хотя токен был установлен аксиосу, но уже после попытки запроса польззоователей.
   // либо created либо beforeMount
   beforeMount() {
     store.dispatch('checkAuth')
-    .then(() =>{
-    })
+        .then(() => {
+        })
   },
   mounted() {
-    this.$root.$on('logout', ()=> {
+    this.$root.$on('logout', () => {
       this.$store.dispatch('Logout')
           .then(() => {
             this.$router.push('/')
           })
     })
   },
-  computed:{
-    layout(){
-      return(this.$route.meta.layout)
+  computed: {
+    layout() {
+      return (this.$route.meta.layout)
     }
   }
 }

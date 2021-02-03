@@ -1,21 +1,9 @@
 <template>
   <div>
-    <navbar/>
-    <h1>LIST TASK</h1>
-    <div class="row">
-      <div class="input-field col s3">
-        <select ref="select" v-model="filter">
-          <option value="" disabled selected>Выберете фильтр..</option>
-          <option value="В процессе..">В процессе..</option>
-          <option value="Задача просрочена!">Просроченые задачи</option>
-          <option value="Задача выполнена">Выполненные задачи</option>
-        </select>
-      </div>
-    </div>
-    <button class="btn-small green" v-if="filter" @click="filter = null">Сбросить фильтр</button>
+    <h1 style="text-align: center">Задачи для компании</h1>
+    <h4 style="text-align: center">Задачи для "{{ company.name }}"</h4>
     <hr>
-
-    <table>
+    <table v-if="tasks.length">
       <thead>
       <tr>
         <th>№</th>
@@ -27,65 +15,66 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(task, idx) in tasksFilter"
-          :key="idx"
+      <tr v-for="(task, index) in tasks"
+      :key="index"
       >
-        <td>{{ idx + 1 }}</td>
-        <td>{{ task.title }}</td>
-        <td>{{ new Date(task.date).toLocaleDateString() }}</td>
+        <td>{{index + 1}}.</td>
+        <td>{{task.title}}</td>
+        <td>{{new Date(task.date).toLocaleDateString()}}</td>
+        <td class="td"><div class="text">{{task.description}}</div></td>
+        <td>{{task.status}}</td>
         <td class="td">
-          <div class="text">{{ task.description }}</div>
+          <div class="text"></div>
         </td>
-        <td>{{ task.status }}</td>
+        <td></td>
         <td>
-          <button tag="button" class="btn btn-small" @click="taskDetail(task.id)">Открыть</button>
         </td>
       </tr>
       </tbody>
-
     </table>
+    <div v-else>
+      <p>Поставленых задач нет.</p>
+    </div>
+    <div v-if="addTaskVisible">
+      <task/>
+    </div>
+    <button class="btn" @click="addToTask">{{ addTaskVisible ? 'Скрыть форму' : 'Добавить' }}</button>
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/task/navbar";
+import Task from "@/components/task/task";
 
 export default {
   name: "list",
+  components: {Task},
   data() {
     return {
-      filter: null
-    }
-  },
-  components: {Navbar},
-  computed: {
-    tasks() {
-      return this.$store.getters.tasks
-    },
-    tasksFilter() {
-      return this.tasks.filter(t => {
-        if (!this.filter) {
-          return true
-        }
-        return t.status === this.filter
-      })
+      addTaskVisible: false
     }
   },
   methods: {
-    taskDetail(id) {
-      this.$router.push(`/task/${id}`)
+    addToTask() {
+      this.addTaskVisible = !this.addTaskVisible
     },
   },
-  mounted() {
-    // eslint-disable-next-line no-undef
-    M.FormSelect.init(this.$refs.select)
+  computed: {
+    company() {
+      let company = this.$store.getters.companies.filter(el => el.id === this.$route.params['id'])
+      return company.length ? company[0] : {}
+    },
+    tasks() {
+      return this.$store.getters.tasks
+
+    }
   }
 }
+
 </script>
 
 <style scoped>
 .td {
-  max-width: 400px;
+  max-width: 360px;
 }
 
 .text {

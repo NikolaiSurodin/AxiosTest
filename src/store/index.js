@@ -182,6 +182,31 @@ const moduleSalary = {
             return state.salary
         }
     }
+};
+const moduleTask = {
+    state: {
+        tasks: JSON.parse(localStorage.getItem('task')) || []
+    },
+    actions: {
+        createTask({commit}, tasks) {
+            commit('CREATE_TASK', tasks)
+        }
+    },
+    mutations: {
+        CREATE_TASK(state, task) {
+            state.tasks.push(task)
+            localStorage.setItem('task', JSON.stringify(state.tasks))
+        }
+    },
+    getters: {
+        tasks(state) {
+            return state.tasks
+        },
+        taskById(state, id) {
+            return state.tasks.find(el => el.id === id)
+        }
+
+    }
 }
 
 export const store = new Vuex.Store({
@@ -190,6 +215,7 @@ export const store = new Vuex.Store({
         b: moduleCompany,
         c: moduleDevelopers,
         d: moduleSalary,
+        f: moduleTask
 
     }
 });

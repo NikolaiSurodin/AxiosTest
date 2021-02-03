@@ -22,6 +22,7 @@ import NotFound from '@/components/App/404'
 import anonymousPage from "@/components/login/anonymousPage";
 import index from '@/components/login/index'
 import layout from "@/components/containers/layout";
+import list from "@/components/task/list";
 
 Vue.use(Router)
 export default new Router({
@@ -143,6 +144,10 @@ export default new Router({
                                         {
                                             path: 'edit',
                                             component: formCompany
+                                        },
+                                        {
+                                            path: 'task',
+                                            component: list
                                         },
                                         {
                                             path: 'employees',

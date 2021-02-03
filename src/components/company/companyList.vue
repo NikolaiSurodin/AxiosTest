@@ -43,6 +43,7 @@
             <td>
               <div>
                 <button class="btn" style="margin-right: 30px" @click="editCompany(model.id)">Редактировать</button>
+                <button class="btn" type="button" @click="toTask(model.id)">Задачи</button>
                 <button class="card-image" type="button">
                   <img src="@/assets/trash.png" height="30px" width="30px" @click="DeleteCompany(model.id)"/></button>
                 <button class="card-image" @click="showPopup(model.id)">
@@ -110,6 +111,9 @@ export default {
       this.res = await response.json()
       this.rates = this.res.rates
       console.log(this.res)
+    },
+    toTask(id){
+      this.$router.push(`/company/${id}/task`)
     }
   },
   computed: {
