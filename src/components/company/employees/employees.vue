@@ -77,7 +77,7 @@ export default {
 
     },
     saveSalary(salary) {
-      this.$store.dispatch('createSalary', salary, this.employee.id)
+      this.$store.dispatch('createSalary', {em_id: this.employee.id, value: salary})
       this.showSalary = !this.showSalary
     }
   },

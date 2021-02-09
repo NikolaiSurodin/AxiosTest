@@ -167,8 +167,8 @@ const moduleSalary = {
         salary: JSON.parse(localStorage.getItem('salary')) || []
     },
     actions: {
-        createSalary({commit}, salary, employee_id) {
-            commit('CREATE_SALARY', {em_id: employee_id, value: salary})
+        createSalary({commit}, payload) {
+            commit('CREATE_SALARY', payload)
         }
     },
     mutations: {
