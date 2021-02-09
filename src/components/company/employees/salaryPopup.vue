@@ -49,8 +49,7 @@ export default {
         days: null,
         hours: null,
         rate: null,
-        salary: null,
-        em_id:null
+        salary: null
       }
     }
   },
@@ -63,7 +62,6 @@ export default {
     },
     saveSalary() {
       this.$emit('saveSalary', this.salaryModel)
-      console.log(this.salaryModel)
     }
   },
   computed: {

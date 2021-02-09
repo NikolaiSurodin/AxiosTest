@@ -40,7 +40,7 @@
         @closePopup="showSalaryTable"
         @saveSalary="saveSalary"
     >
-      <p>Рассчитать зарплату для сотрудника: {{ employee[0].name }}</p>
+      <p>Рассчитать зарплату для сотрудника: {{ employee.name }}</p>
     </salary-popup>
   </div>
 </template>
@@ -55,7 +55,7 @@ export default {
     return {
       showSalary: false,
       employee: null,
-      salary: null
+      salary:null
     }
   },
   methods: {
@@ -73,10 +73,11 @@ export default {
     showSalaryTable(em_id) {
       this.showSalary = !this.showSalary
       this.employee = this.$store.getters.employees.filter(el => el.id === em_id)
-      return this.employee.length ? this.employee[0] : null
+      this.employee = this.employee.length ? this.employee[0] : null
+
     },
-    saveSalary(em_id) {
-      this.$store.dispatch('createSalary', em_id)
+    saveSalary(salary) {
+      this.$store.dispatch('createSalary', salary, this.employee.id)
       this.showSalary = !this.showSalary
     }
   },
