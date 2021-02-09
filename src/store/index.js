@@ -167,13 +167,13 @@ const moduleSalary = {
         salary: JSON.parse(localStorage.getItem('salary')) || []
     },
     actions: {
-        createSalary({commit}, salary) {
-            commit('CREATE_SALARY', salary)
+        createSalary({commit}, salary,employee_id) {
+            commit('CREATE_SALARY', salary,employee_id)
         }
     },
     mutations: {
-        CREATE_SALARY(state, salary) {
-            state.salary.push(salary)
+        CREATE_SALARY(state, salary, employee_id) {
+            state.salary.push({em_id:employee_id, value: salary})
             localStorage.setItem('salary', JSON.stringify(state.salary))
         }
     },

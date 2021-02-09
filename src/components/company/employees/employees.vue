@@ -39,12 +39,8 @@
         v-if="showSalary"
         @closePopup="showSalaryTable"
         @saveSalary="saveSalary"
-        :id="this.employee.id"
-        :salary="salary"
     >
-      <p>Рассчитать зарплату для сотрудника: {{ employee[0].name }}
-
-      </p>
+      <p>Рассчитать зарплату для сотрудника: {{ employee[0].name }}</p>
     </salary-popup>
   </div>
 </template>

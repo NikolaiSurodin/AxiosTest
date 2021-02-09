@@ -41,6 +41,9 @@ export default {
     salary() {
       return this.$store.getters.salary.filter(el => el.id === this.employees.id)
     }
+  },
+  mounted() {
+    console.log(this.employees[0].id)
   }
 }
 </script>
